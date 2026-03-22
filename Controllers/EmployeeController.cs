@@ -7,7 +7,6 @@ namespace NZFTC_Portal.Controllers
         // Employee dashboard
         public IActionResult Dashboard()
         {
-            // Shared header data
             ViewData["PortalUserName"] = "Employee Name - EMP000";
             ViewData["PortalRole"] = "Employee";
             ViewData["ActiveTab"] = "Dashboard";
@@ -19,7 +18,6 @@ namespace NZFTC_Portal.Controllers
         // Employee leave page
         public IActionResult Leave()
         {
-            // Shared header data
             ViewData["PortalUserName"] = "Employee Name - EMP000";
             ViewData["PortalRole"] = "Employee";
             ViewData["ActiveTab"] = "Leave";
@@ -31,7 +29,6 @@ namespace NZFTC_Portal.Controllers
         // Employee payroll page
         public IActionResult Payroll()
         {
-            // Shared header data
             ViewData["PortalUserName"] = "Employee Name - EMP000";
             ViewData["PortalRole"] = "Employee";
             ViewData["ActiveTab"] = "Payroll";
@@ -43,10 +40,20 @@ namespace NZFTC_Portal.Controllers
         // Employee information page
         public IActionResult MyInfo()
         {
-            // Shared header data
             ViewData["PortalUserName"] = "Employee Name - EMP000";
             ViewData["PortalRole"] = "Employee";
             ViewData["ActiveTab"] = "My Info";
+            ViewData["PortalNavItems"] = new[] { "Dashboard", "Leave", "Payroll", "My Info" };
+
+            return View();
+        }
+
+        // Employee support page
+        public IActionResult Support()
+        {
+            ViewData["PortalUserName"] = "Employee Name - EMP000";
+            ViewData["PortalRole"] = "Employee";
+            ViewData["ActiveTab"] = "";
             ViewData["PortalNavItems"] = new[] { "Dashboard", "Leave", "Payroll", "My Info" };
 
             return View();

@@ -1,0 +1,162 @@
+﻿/* Support page */
+.support-page {
+    padding-top: 20px;
+    padding-bottom: 8px;
+}
+
+/* Page heading */
+.support-heading {
+    margin-bottom: 18px;
+}
+
+    .support-heading h1 {
+        margin: 0 0 6px;
+        font-size: 28px;
+        font-weight: 600;
+        color: #111111;
+    }
+
+    .support-heading p {
+        margin: 0;
+        font-size: 16px;
+        color: #8b93a1;
+    }
+
+/* Main layout */
+.support-grid {
+    display: grid;
+    grid-template-columns: 0.72fr 1.08fr;
+    gap: 28px;
+    align-items: start;
+}
+
+/* Left column */
+.support-left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+/* Shared card */
+.support-card {
+    border: 1px solid #dddddd;
+    border-radius: 14px;
+    background-color: #f5f5f5;
+    padding: 18px 18px 16px;
+}
+
+    .support-card h2 {
+        margin: 0 0 18px;
+        font-size: 22px;
+        font-weight: 700;
+        color: #163d74;
+    }
+
+/* Body text */
+.support-body-text {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.45;
+    color: #222222;
+}
+
+/* Contact block */
+.contact-block {
+    margin-bottom: 22px;
+}
+
+.contact-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 12px;
+    align-items: start;
+    margin-bottom: 14px;
+}
+
+    .contact-row:last-child {
+        margin-bottom: 0;
+    }
+
+.contact-label {
+    font-size: 16px;
+    font-weight: 700;
+    color: #163d74;
+}
+
+.contact-link {
+    font-size: 16px;
+    color: #5aa8ff;
+    text-decoration: underline;
+    word-break: break-word;
+}
+
+/* Support hours */
+.support-hours h3 {
+    margin: 0 0 6px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #163d74;
+}
+
+.support-hours p {
+    margin: 0;
+    font-size: 16px;
+    color: #222222;
+}
+
+/* About card */
+.about-card h2 {
+    margin-bottom: 18px;
+}
+
+.about-image {
+    width: 100%;
+    margin-bottom: 22px;
+}
+
+    .about-image img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 0;
+    }
+
+.about-text {
+    margin-top: 0;
+}
+
+/* Tablet layout */
+@media (max-width: 1100px) {
+    .support-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Mobile layout */
+@media (max-width: 700px) {
+    .support-page {
+        padding-top: 18px;
+    }
+
+    .support-heading h1 {
+        font-size: 24px;
+    }
+
+    .support-heading p,
+    .support-body-text,
+    .contact-label,
+    .contact-link,
+    .support-hours h3,
+    .support-hours p {
+        font-size: 14px;
+    }
+
+    .support-card h2 {
+        font-size: 20px;
+    }
+
+    .contact-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+}

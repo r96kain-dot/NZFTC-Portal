@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Support";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+@section Styles {
+    <!-- Employee support CSS -->
+    <link rel="stylesheet" href="~/css/employee-support.css" asp-append-version="true" />
+}
+
+<!-- Support page -->
+<section class="support-page">
+    <!-- Page heading -->
+    <div class="support-heading">
+        <h1>Support &amp; Contact</h1>
+        <p>About Us, portal information, and support contact details</p>
+    </div>
+
+    <!-- Main layout -->
+    <section class="support-grid">
+        <!-- Left column -->
+        <div class="support-left-column">
+            <!-- Portal information -->
+            <article class="support-card">
+                <h2>Portal Information</h2>
+
+                <p class="support-body-text">
+                    The NZFTC Portal is an internal system designed for employees and administrators
+                    to manage day-to-day workplace tasks. It provides quick access to leave, payroll,
+                    employee information, case records, and support resources.
+                </p>
+            </article>
+
+            <!-- Contact us -->
+            <article class="support-card">
+                <h2>Contact Us</h2>
+
+                <div class="contact-block">
+                    <div class="contact-row">
+                        <span class="contact-label">IT Support:</span>
+                        <a href="mailto:itsupport@nzftc.co.nz" class="contact-link">itsupport@nzftc.co.nz</a>
+                    </div>
+
+                    <div class="contact-row">
+                        <span class="contact-label">HR Support:</span>
+                        <a href="mailto:hresources@nzftc.co.nz" class="contact-link">hresources@nzftc.co.nz</a>
+                    </div>
+                </div>
+
+                <div class="support-hours">
+                    <h3>Support Hours</h3>
+                    <p>Monday to Friday, 8:30 AM to 5 PM</p>
+                </div>
+            </article>
+        </div>
+
+        <!-- Right column -->
+        <article class="support-card about-card">
+            <h2>About Us</h2>
+
+            <div class="about-image">
+                <img src="~/images/about_us_hero.png" alt="NZFTC business and finance graphic" />
+            </div>
+
+            <p class="support-body-text about-text">
+                NZFTC is a finance and trade company that supports its operations through secure internal
+                systems and structured workplace processes. The organization uses the NZFTC Portal to help
+                employees and administrators manage important tasks such as leave requests, payroll access,
+                employee records, and workplace case handling in a more efficient and organized way.
+            </p>
+        </article>
+    </section>
+</section>
