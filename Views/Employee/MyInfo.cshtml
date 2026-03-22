@@ -1,0 +1,139 @@
+﻿@{
+    ViewData["Title"] = "Employee Information";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+@section Styles {
+    <!-- Employee information CSS -->
+    <link rel="stylesheet" href="~/css/employee-myinfo.css" asp-append-version="true" />
+}
+
+<!-- My information page -->
+<section class="myinfo-page">
+    <!-- Page heading -->
+    <div class="myinfo-heading">
+        <h1>My Information</h1>
+        <p>View and manage your personal information and cases</p>
+    </div>
+
+    <!-- Main content grid -->
+    <section class="myinfo-grid">
+        <!-- Personal information card -->
+        <article class="myinfo-card personal-info-card">
+            <!-- Card heading -->
+            <div class="card-heading">
+                <h2>Personal Information</h2>
+                <p>Your employee details and contact information</p>
+            </div>
+
+            <!-- Info grid -->
+            <div class="personal-info-grid">
+                <!-- Employee ID -->
+                <div class="info-group">
+                    <label>Employee ID</label>
+                    <div class="info-box">--</div>
+                </div>
+
+                <!-- Status -->
+                <div class="info-group">
+                    <label>Status</label>
+                    <div class="status-box active-status">Active</div>
+                </div>
+
+                <!-- Full name -->
+                <div class="info-group">
+                    <label>Full Name</label>
+                    <div class="info-box">--</div>
+                </div>
+
+                <!-- Empty spacer -->
+                <div class="info-group info-group-empty"></div>
+
+                <!-- Contact number -->
+                <div class="info-group">
+                    <label>Contact Number</label>
+
+                    <div class="editable-row">
+                        <div class="info-box">--</div>
+                        <a href="#" class="edit-button">Edit</a>
+                    </div>
+                </div>
+
+                <!-- Emergency contact -->
+                <div class="info-group">
+                    <label>Emergency Contact</label>
+
+                    <div class="editable-row">
+                        <div class="info-box">--</div>
+                        <a href="#" class="edit-button">Edit</a>
+                    </div>
+                </div>
+
+                <!-- Email address -->
+                <div class="info-group">
+                    <label>Email Address</label>
+                    <div class="info-box">--</div>
+                </div>
+
+                <!-- Empty spacer -->
+                <div class="info-group info-group-empty"></div>
+
+                <!-- Department -->
+                <div class="info-group">
+                    <label>Department</label>
+                    <div class="info-box">--</div>
+                </div>
+
+                <!-- Position -->
+                <div class="info-group">
+                    <label>Position</label>
+                    <div class="info-box">--</div>
+                </div>
+
+                <!-- Join date -->
+                <div class="info-group">
+                    <label>Join Date</label>
+                    <div class="info-box">--</div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Cases card -->
+        <article class="myinfo-card cases-card">
+            <!-- Card heading row -->
+            <div class="cases-top">
+                <div class="card-heading">
+                    <h2>My Cases</h2>
+                    <p>Submit and track your grievances and resignation</p>
+                </div>
+
+                <div class="cases-action">
+                    <a href="#" class="submit-case-button">+ Submit Case</a>
+                </div>
+            </div>
+
+            <!-- Cases table -->
+            <div class="cases-table-wrapper">
+                <table class="cases-table">
+                    <thead>
+                        <tr>
+                            <th>Case ID</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Placeholder row -->
+                        <tr>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>
+                                <span class="case-status pending-status">Pending</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+    </section>
+</section>

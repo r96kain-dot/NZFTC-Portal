@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "Employee Leave";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+@section Styles {
+    <!-- Employee leave CSS -->
+    <link rel="stylesheet" href="~/css/employee-leave.css" asp-append-version="true" />
+}
+
+<!-- Leave page -->
+<section class="leave-page">
+    <!-- Page heading row -->
+    <div class="leave-page-top">
+        <!-- Page heading -->
+        <div class="leave-heading">
+            <h1>My Leave</h1>
+            <p>Request leave and view your history</p>
+        </div>
+
+        <!-- Request leave button -->
+        <div class="leave-top-action">
+            <a href="#" class="request-leave-button">+ Request Leave</a>
+        </div>
+    </div>
+
+    <!-- Leave history card -->
+    <section class="leave-card">
+        <!-- Section heading -->
+        <div class="leave-card-heading">
+            <h2>Leave History</h2>
+            <p>Your leave requests and their status</p>
+        </div>
+
+        <!-- Leave table -->
+        <div class="leave-table-wrapper">
+            <table class="leave-table">
+                <thead>
+                    <tr>
+                        <th>Request ID</th>
+                        <th>Type</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Days</th>
+                        <th>Status</th>
+                        <th>Reason</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Placeholder row -->
+                    <tr>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>
+                            <span class="status-badge pending-status">Pending</span>
+                        </td>
+                        <td>--</td>
+                    </tr>
+
+                    <!-- Placeholder row -->
+                    <tr>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>
+                            <span class="status-badge approved-status">Approved</span>
+                        </td>
+                        <td>--</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>

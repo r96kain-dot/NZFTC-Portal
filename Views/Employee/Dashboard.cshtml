@@ -1,0 +1,148 @@
+﻿@{
+    ViewData["Title"] = "Employee Dashboard";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+@section Styles {
+    <!-- Employee dashboard CSS -->
+    <link rel="stylesheet" href="~/css/employee-dashboard.css" asp-append-version="true" />
+}
+
+<!-- Dashboard page -->
+<section class="dashboard-page">
+    <!-- Page heading -->
+    <div class="dashboard-heading">
+        <h1>My Dashboard</h1>
+        <p>Welcome back, here's your overview</p>
+    </div>
+
+    <!-- Leave balance section -->
+    <section class="dashboard-card leave-balance-card">
+        <div class="section-heading">
+            <h2>Leave Balance</h2>
+            <p>Your available leave days</p>
+        </div>
+
+        <div class="leave-balance-grid">
+            <!-- Annual leave -->
+            <article class="mini-stat-card">
+                <div class="mini-stat-top">
+                    <span class="mini-stat-icon annual-icon"></span>
+                    <span class="mini-stat-title">Annual Leave</span>
+                </div>
+
+                <div class="mini-stat-value">--</div>
+                <div class="mini-stat-subtext">of -- days</div>
+            </article>
+
+            <!-- Sick leave -->
+            <article class="mini-stat-card">
+                <div class="mini-stat-top">
+                    <span class="mini-stat-icon sick-icon"></span>
+                    <span class="mini-stat-title">Sick Leave</span>
+                </div>
+
+                <div class="mini-stat-value">--</div>
+                <div class="mini-stat-subtext">of -- days</div>
+            </article>
+
+            <!-- Personal leave -->
+            <article class="mini-stat-card">
+                <div class="mini-stat-top">
+                    <span class="mini-stat-icon personal-icon"></span>
+                    <span class="mini-stat-title">Personal Leave</span>
+                </div>
+
+                <div class="mini-stat-value">--</div>
+                <div class="mini-stat-subtext">of -- days</div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Bottom content row -->
+    <section class="dashboard-bottom-grid">
+        <!-- Payslip card -->
+        <article class="dashboard-card info-card">
+            <div class="section-heading">
+                <h2>Latest Payslip</h2>
+                <p>Payroll summary</p>
+            </div>
+
+            <div class="payslip-details">
+                <div class="payslip-row">
+                    <span>Basic Salary</span>
+                    <span>--</span>
+                </div>
+
+                <div class="payslip-row">
+                    <span>Allowances</span>
+                    <span>--</span>
+                </div>
+
+                <div class="payslip-row">
+                    <span>Deductions</span>
+                    <span>--</span>
+                </div>
+
+                <div class="payslip-row net-pay-row">
+                    <span>Net Pay</span>
+                    <span>--</span>
+                </div>
+            </div>
+
+            <div class="card-action">
+                <a href="#" class="primary-button">View All</a>
+            </div>
+        </article>
+
+        <!-- Holidays card -->
+        <article class="dashboard-card info-card">
+            <div class="section-heading">
+                <h2>Upcoming Holidays</h2>
+                <p>New Zealand public holidays</p>
+            </div>
+
+            <div class="holiday-list">
+                <!-- Holiday row -->
+                <div class="holiday-row">
+                    <div class="holiday-text">
+                        <span class="holiday-name">Holiday Name</span>
+                        <span class="holiday-date">Date coming soon</span>
+                    </div>
+
+                    <span class="holiday-icon"></span>
+                </div>
+
+                <!-- Holiday row -->
+                <div class="holiday-row">
+                    <div class="holiday-text">
+                        <span class="holiday-name">Holiday Name</span>
+                        <span class="holiday-date">Date coming soon</span>
+                    </div>
+
+                    <span class="holiday-icon"></span>
+                </div>
+
+                <!-- Holiday row -->
+                <div class="holiday-row">
+                    <div class="holiday-text">
+                        <span class="holiday-name">Holiday Name</span>
+                        <span class="holiday-date">Date coming soon</span>
+                    </div>
+
+                    <span class="holiday-icon"></span>
+                </div>
+
+                <!-- Holiday row -->
+                <div class="holiday-row">
+                    <div class="holiday-text">
+                        <span class="holiday-name">Holiday Name</span>
+                        <span class="holiday-date">Date coming soon</span>
+                    </div>
+
+                    <span class="holiday-icon"></span>
+                </div>
+            </div>
+        </article>
+    </section>
+</section>

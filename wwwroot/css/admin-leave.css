@@ -1,0 +1,220 @@
+﻿/* Admin leave page */
+.admin-leave-page {
+    padding-top: 20px;
+    padding-bottom: 8px;
+}
+
+/* Page heading */
+.admin-leave-heading {
+    margin-bottom: 14px;
+}
+
+    .admin-leave-heading h1 {
+        margin: 0 0 6px;
+        font-size: 28px;
+        font-weight: 600;
+        color: #111111;
+    }
+
+    .admin-leave-heading p {
+        margin: 0;
+        font-size: 16px;
+        color: #8b93a1;
+    }
+
+/* Shared cards */
+.admin-leave-card,
+.admin-reporting-card {
+    border: 1px solid #dddddd;
+    border-radius: 14px;
+    background-color: #f5f5f5;
+    padding: 14px 16px 16px;
+}
+
+.admin-leave-card {
+    margin-bottom: 22px;
+}
+
+/* Card headings */
+.admin-leave-card-heading,
+.admin-reporting-heading {
+    margin-bottom: 14px;
+}
+
+    .admin-leave-card-heading h2,
+    .admin-reporting-heading h2 {
+        margin: 0 0 4px;
+        font-size: 18px;
+        font-weight: 600;
+        color: #111111;
+    }
+
+    .admin-leave-card-heading p,
+    .admin-reporting-heading p {
+        margin: 0;
+        font-size: 14px;
+        color: #8b93a1;
+    }
+
+/* Table wrapper */
+.admin-leave-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Leave table */
+.admin-leave-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1020px;
+}
+
+    .admin-leave-table th {
+        text-align: left;
+        padding: 10px 12px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #222222;
+        border-bottom: 1px solid #d9d9d9;
+    }
+
+    .admin-leave-table td {
+        padding: 10px 12px;
+        font-size: 14px;
+        color: #444444;
+        border-bottom: 1px solid #e1e1e1;
+        vertical-align: middle;
+    }
+
+    .admin-leave-table tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+/* Status badge */
+.leave-status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 88px;
+    height: 30px;
+    padding: 0 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.pending-status {
+    background-color: #ffe8a3;
+    border: 1px solid #e2b84f;
+    color: #c78600;
+}
+
+.approved-status {
+    background-color: #c8efd2;
+    border: 1px solid #64b977;
+    color: #2f9a47;
+}
+
+/* Action group */
+.leave-action-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.leave-action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 86px;
+    height: 30px;
+    padding: 0 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.approve-button {
+    background-color: #c8efd2;
+    border: 1px solid #64b977;
+    color: #2f9a47;
+}
+
+.reject-button {
+    background-color: #f2cccc;
+    border: 1px solid #d86b6b;
+    color: #c43f3f;
+}
+
+/* Reporting grid */
+.admin-reporting-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+/* Snapshot card */
+.report-stat-card {
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+    padding: 14px 18px;
+}
+
+    .report-stat-card h3 {
+        margin: 0 0 10px;
+        font-size: 16px;
+        font-weight: 500;
+        color: #6d7382;
+    }
+
+.report-stat-value {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1;
+    color: #111111;
+}
+
+.approved-value {
+    color: #16a34a;
+}
+
+.pending-value {
+    color: #d62828;
+}
+
+.rejected-value {
+    color: #111111;
+}
+
+/* Tablet layout */
+@media (max-width: 1100px) {
+    .admin-reporting-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Mobile layout */
+@media (max-width: 700px) {
+    .admin-leave-page {
+        padding-top: 18px;
+    }
+
+    .admin-leave-heading h1 {
+        font-size: 24px;
+    }
+
+    .admin-leave-heading p,
+    .admin-leave-card-heading p,
+    .admin-reporting-heading p,
+    .admin-leave-table th,
+    .admin-leave-table td,
+    .leave-status-badge,
+    .leave-action-button {
+        font-size: 13px;
+    }
+
+    .admin-reporting-grid {
+        grid-template-columns: 1fr;
+    }
+}

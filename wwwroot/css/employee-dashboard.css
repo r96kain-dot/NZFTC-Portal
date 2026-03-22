@@ -1,0 +1,262 @@
+﻿/* Dashboard page */
+.dashboard-page {
+    padding-top: 28px;
+    padding-bottom: 8px;
+}
+
+/* Page heading */
+.dashboard-heading {
+    margin-bottom: 18px;
+}
+
+    .dashboard-heading h1 {
+        margin: 0 0 6px;
+        font-size: 28px;
+        font-weight: 600;
+        color: #111111;
+    }
+
+    .dashboard-heading p {
+        margin: 0;
+        font-size: 16px;
+        color: #8b93a1;
+    }
+
+/* Shared card */
+.dashboard-card {
+    background-color: #f3f3f3;
+    border: 1px solid #dddddd;
+    border-radius: 14px;
+    padding: 18px 18px 16px;
+}
+
+/* Section heading */
+.section-heading {
+    margin-bottom: 14px;
+}
+
+    .section-heading h2 {
+        margin: 0 0 4px;
+        font-size: 18px;
+        font-weight: 600;
+        color: #111111;
+    }
+
+    .section-heading p {
+        margin: 0;
+        font-size: 15px;
+        color: #8b93a1;
+    }
+
+/* Leave balance card */
+.leave-balance-card {
+    margin-bottom: 20px;
+}
+
+.leave-balance-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+/* Mini stat cards */
+.mini-stat-card {
+    background-color: #f8f8f8;
+    border: 1px solid #dddddd;
+    border-radius: 12px;
+    padding: 14px 16px 12px;
+}
+
+.mini-stat-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.mini-stat-icon {
+    width: 18px;
+    height: 18px;
+    border: 2px solid currentColor;
+    border-radius: 999px;
+    display: inline-block;
+}
+
+.annual-icon {
+    color: #2f80ed;
+}
+
+.sick-icon {
+    color: #ff3b30;
+}
+
+.personal-icon {
+    color: #22c55e;
+}
+
+.mini-stat-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #6d7382;
+}
+
+.mini-stat-value {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1;
+    color: #111111;
+    margin-bottom: 4px;
+}
+
+.mini-stat-subtext {
+    font-size: 12px;
+    color: #8b93a1;
+}
+
+/* Bottom grid */
+.dashboard-bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Info cards */
+.info-card {
+    min-height: 330px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Payslip details */
+.payslip-details {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 4px;
+    margin-bottom: 24px;
+}
+
+.payslip-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 16px;
+    color: #6d7382;
+}
+
+.net-pay-row {
+    font-weight: 700;
+    color: #111111;
+}
+
+/* Card action */
+.card-action {
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.primary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 220px;
+    height: 36px;
+    padding: 0 20px;
+    background-color: #000000;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Holiday list */
+.holiday-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #f8f8f8;
+}
+
+.holiday-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 14px;
+    border-bottom: 1px solid #dddddd;
+}
+
+    .holiday-row:last-child {
+        border-bottom: none;
+    }
+
+.holiday-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.holiday-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: #111111;
+}
+
+.holiday-date {
+    font-size: 15px;
+    color: #8b93a1;
+}
+
+.holiday-icon {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #8b93a1;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+/* Tablet layout */
+@media (max-width: 1000px) {
+    .leave-balance-grid,
+    .dashboard-bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-card {
+        min-height: auto;
+    }
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+    .dashboard-page {
+        padding-top: 20px;
+    }
+
+    .dashboard-heading h1 {
+        font-size: 24px;
+    }
+
+    .dashboard-heading p,
+    .section-heading p,
+    .payslip-row,
+    .holiday-date,
+    .holiday-name,
+    .mini-stat-title {
+        font-size: 14px;
+    }
+
+    .mini-stat-value {
+        font-size: 28px;
+    }
+
+    .primary-button {
+        width: 100%;
+        min-width: 0;
+    }
+}

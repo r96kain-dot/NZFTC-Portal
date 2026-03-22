@@ -1,0 +1,244 @@
+﻿/* Admin dashboard page */
+.admin-dashboard-page {
+    padding-top: 20px;
+    padding-bottom: 8px;
+}
+
+/* Page heading */
+.admin-dashboard-heading {
+    margin-bottom: 18px;
+}
+
+    .admin-dashboard-heading h1 {
+        margin: 0 0 6px;
+        font-size: 28px;
+        font-weight: 600;
+        color: #111111;
+    }
+
+    .admin-dashboard-heading p {
+        margin: 0;
+        font-size: 16px;
+        color: #8b93a1;
+    }
+
+/* Stats grid */
+.admin-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+    margin-bottom: 26px;
+}
+
+/* Stat card */
+.admin-stat-card {
+    border: 1px solid #dddddd;
+    border-radius: 14px;
+    background-color: #f5f5f5;
+    padding: 14px 16px 12px;
+    min-height: 190px;
+}
+
+.admin-stat-card-heading {
+    margin-bottom: 20px;
+}
+
+    .admin-stat-card-heading h2 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 500;
+        color: #111111;
+    }
+
+/* Stat content */
+.admin-stat-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.admin-stat-value {
+    font-size: 52px;
+    line-height: 1;
+    font-weight: 600;
+    color: #111111;
+}
+
+.admin-stat-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    flex-shrink: 0;
+}
+
+.warning-icon {
+    border: 3px solid #ff3b30;
+}
+
+.people-icon {
+    border: 3px solid #2f80ed;
+}
+
+.alert-icon {
+    border: 3px solid #ff3b30;
+}
+
+/* Stat action */
+.admin-stat-action {
+    display: flex;
+    justify-content: center;
+}
+
+.admin-card-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    height: 32px;
+    padding: 0 16px;
+    border-radius: 6px;
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Requests card */
+.admin-requests-card {
+    border: 1px solid #dddddd;
+    border-radius: 14px;
+    background-color: #f5f5f5;
+    padding: 14px 14px 16px;
+}
+
+.admin-requests-heading {
+    margin-bottom: 14px;
+}
+
+    .admin-requests-heading h2 {
+        margin: 0 0 4px;
+        font-size: 18px;
+        font-weight: 600;
+        color: #111111;
+    }
+
+    .admin-requests-heading p {
+        margin: 0;
+        font-size: 14px;
+        color: #8b93a1;
+    }
+
+/* Request list */
+.admin-request-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.admin-request-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+    padding: 12px 16px;
+}
+
+.admin-request-text h3 {
+    margin: 0 0 6px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #111111;
+}
+
+.admin-request-text p {
+    margin: 0;
+    font-size: 14px;
+    color: #6d7382;
+}
+
+.admin-request-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+/* Status badge */
+.request-status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 98px;
+    height: 30px;
+    padding: 0 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.pending-status {
+    background-color: #ffe8a3;
+    border: 1px solid #e2b84f;
+    color: #c78600;
+}
+
+/* Review button */
+.review-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 80px;
+    height: 32px;
+    padding: 0 16px;
+    border-radius: 6px;
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* Tablet layout */
+@media (max-width: 1100px) {
+    .admin-stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Mobile layout */
+@media (max-width: 700px) {
+    .admin-dashboard-page {
+        padding-top: 18px;
+    }
+
+    .admin-dashboard-heading h1 {
+        font-size: 24px;
+    }
+
+    .admin-dashboard-heading p,
+    .admin-requests-heading p,
+    .admin-request-text p,
+    .request-status-badge,
+    .review-button {
+        font-size: 13px;
+    }
+
+    .admin-request-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .admin-request-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .review-button {
+        width: 100%;
+    }
+}

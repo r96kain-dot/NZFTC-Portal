@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "Employee Management";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+@section Styles {
+    <!-- Admin employees CSS -->
+    <link rel="stylesheet" href="~/css/admin-employees.css" asp-append-version="true" />
+}
+
+<!-- Admin employees page -->
+<section class="admin-employees-page">
+    <!-- Page heading -->
+    <div class="admin-employees-heading">
+        <h1>Employee Management</h1>
+        <p>View and manage employee records</p>
+    </div>
+
+    <!-- Employee directory card -->
+    <section class="employee-directory-card">
+        <!-- Card top row -->
+        <div class="employee-directory-top">
+            <div class="employee-directory-heading">
+                <h2>Employee Directory</h2>
+                <p>All employees in the organization</p>
+            </div>
+
+            <div class="employee-directory-action">
+                <a href="#" class="add-employee-button">+ Add Employee</a>
+            </div>
+        </div>
+
+        <!-- Employee table -->
+        <div class="employee-table-wrapper">
+            <table class="employee-table">
+                <thead>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Department</th>
+                        <th>Position</th>
+                        <th>Join Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Active employee row -->
+                    <tr>
+                        <td>EMP---</td>
+                        <td>Employee Name</td>
+                        <td>employee@nzftc.co.nz</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>
+                            <span class="employee-status-badge active-status">Active</span>
+                        </td>
+                        <td>
+                            <a href="#" class="view-button">View</a>
+                        </td>
+                    </tr>
+
+                    <!-- On leave employee row -->
+                    <tr>
+                        <td>EMP---</td>
+                        <td>Employee Name</td>
+                        <td>employee@nzftc.co.nz</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>
+                            <span class="employee-status-badge leave-status">On Leave</span>
+                        </td>
+                        <td>
+                            <a href="#" class="view-button">View</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>

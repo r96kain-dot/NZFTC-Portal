@@ -1,0 +1,130 @@
+﻿@{
+    ViewData["Title"] = "Leave Management";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+@section Styles {
+    <!-- Admin leave CSS -->
+    <link rel="stylesheet" href="~/css/admin-leave.css" asp-append-version="true" />
+}
+
+<!-- Admin leave page -->
+<section class="admin-leave-page">
+    <!-- Page heading -->
+    <div class="admin-leave-heading">
+        <h1>Leave Management</h1>
+        <p>Approve requests and view leave reporting</p>
+    </div>
+
+    <!-- Leave history card -->
+    <section class="admin-leave-card">
+        <!-- Card heading -->
+        <div class="admin-leave-card-heading">
+            <h2>Leave History</h2>
+            <p>Review leave requests and their status</p>
+        </div>
+
+        <!-- Leave table -->
+        <div class="admin-leave-table-wrapper">
+            <table class="admin-leave-table">
+                <thead>
+                    <tr>
+                        <th>Request ID</th>
+                        <th>Employee</th>
+                        <th>Type</th>
+                        <th>Dates</th>
+                        <th>Days</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Request row -->
+                    <tr>
+                        <td>--</td>
+                        <td>Employee Name<br />EMP---</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>
+                            <span class="leave-status-badge pending-status">Pending</span>
+                        </td>
+                        <td>
+                            <div class="leave-action-group">
+                                <a href="#" class="leave-action-button approve-button">Approve</a>
+                                <a href="#" class="leave-action-button reject-button">Reject</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Request row -->
+                    <tr>
+                        <td>--</td>
+                        <td>Employee Name<br />EMP---</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>
+                            <span class="leave-status-badge pending-status">Pending</span>
+                        </td>
+                        <td>
+                            <div class="leave-action-group">
+                                <a href="#" class="leave-action-button approve-button">Approve</a>
+                                <a href="#" class="leave-action-button reject-button">Reject</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Request row -->
+                    <tr>
+                        <td>--</td>
+                        <td>Employee Name<br />EMP---</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>
+                            <span class="leave-status-badge approved-status">Approved</span>
+                        </td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Reporting snapshot -->
+    <section class="admin-reporting-card">
+        <!-- Card heading -->
+        <div class="admin-reporting-heading">
+            <h2>Leave Reporting Snapshot</h2>
+            <p>Overview of all leave requests</p>
+        </div>
+
+        <!-- Reporting grid -->
+        <div class="admin-reporting-grid">
+            <!-- Snapshot card -->
+            <article class="report-stat-card">
+                <h3>Total Requests</h3>
+                <div class="report-stat-value">--</div>
+            </article>
+
+            <!-- Snapshot card -->
+            <article class="report-stat-card">
+                <h3>Approved</h3>
+                <div class="report-stat-value approved-value">--</div>
+            </article>
+
+            <!-- Snapshot card -->
+            <article class="report-stat-card">
+                <h3>Pending</h3>
+                <div class="report-stat-value pending-value">--</div>
+            </article>
+
+            <!-- Snapshot card -->
+            <article class="report-stat-card">
+                <h3>Rejected</h3>
+                <div class="report-stat-value rejected-value">--</div>
+            </article>
+        </div>
+    </section>
+</section>

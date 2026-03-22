@@ -1,0 +1,36 @@
+﻿@{
+    var pageTitle = ViewData["Title"]?.ToString() ?? "NZFTC Portal";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta setup -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Page title -->
+    <title>@pageTitle - NZFTC Portal</title>
+
+    <!-- Shared portal CSS -->
+    <link rel="stylesheet" href="~/css/portal-layout.css" asp-append-version="true" />
+
+    <!-- Page CSS -->
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <!-- Portal page wrapper -->
+    <div class="portal-page">
+        <!-- Shared header -->
+        @await Html.PartialAsync("_PortalHeader")
+
+        <!-- Page content -->
+        <main class="portal-content">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- Page scripts -->
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

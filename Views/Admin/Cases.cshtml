@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Cases Management";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+@section Styles {
+    <!-- Admin cases CSS -->
+    <link rel="stylesheet" href="~/css/admin-cases.css" asp-append-version="true" />
+}
+
+<!-- Admin cases page -->
+<section class="admin-cases-page">
+    <!-- Page heading -->
+    <div class="admin-cases-heading">
+        <h1>Cases Management</h1>
+        <p>Review and manage employee grievances and resignations</p>
+    </div>
+
+    <!-- Cases card -->
+    <section class="cases-card">
+        <!-- Card heading -->
+        <div class="cases-card-heading">
+            <h2>Cases Management</h2>
+            <p>All pending cases in the organization</p>
+        </div>
+
+        <!-- Cases table -->
+        <div class="cases-table-wrapper">
+            <table class="cases-table">
+                <thead>
+                    <tr>
+                        <th>Case ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Department</th>
+                        <th>Position</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Case row -->
+                    <tr>
+                        <td>CR---</td>
+                        <td>Employee Name</td>
+                        <td>employee@nzftc.co.nz</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>Grievance</td>
+                        <td>
+                            <span class="case-status-badge pending-status">Pending</span>
+                        </td>
+                        <td>
+                            <a href="#" class="view-button">View</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>

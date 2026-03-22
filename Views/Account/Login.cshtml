@@ -1,0 +1,99 @@
+﻿@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta setup -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Page title -->
+    <title>Login - NZFTC Portal</title>
+
+    <!-- Login page CSS -->
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+</head>
+<body>
+    <!-- Login page wrapper -->
+    <main class="login-page">
+        <!-- Login card -->
+        <section class="login-card">
+            <!-- Logo -->
+            <div class="login-logo">
+                <img src="~/images/default_logo.png" alt="NZFTC Portal logo" />
+            </div>
+
+            <!-- Login form -->
+            <form class="login-form" method="post" asp-controller="Account" asp-action="Login">
+                <!-- Email field -->
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input id="email"
+                           name="email"
+                           type="email"
+                           placeholder="Enter your email" />
+                </div>
+
+                <!-- Password field -->
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password"
+                           name="password"
+                           type="password"
+                           placeholder="Enter your password" />
+                </div>
+
+                <!-- Forgot password link -->
+                <div class="form-link-row">
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+
+                <!-- Role selection -->
+                <div class="role-section">
+                    <p class="role-heading">Sign in as</p>
+
+                    <!-- Employee role -->
+                    <label class="role-option" for="employeeRole">
+                        <input id="employeeRole"
+                               name="role"
+                               type="radio"
+                               value="Employee" />
+
+                        <span class="role-custom-radio"></span>
+
+                        <span class="role-text-group">
+                            <span class="role-title">Employee</span>
+                            <span class="role-description">
+                                Access your personal dashboard, leave requests, and payroll details.
+                            </span>
+                        </span>
+                    </label>
+
+                    <!-- Administrator role -->
+                    <label class="role-option" for="adminRole">
+                        <input id="adminRole"
+                               name="role"
+                               type="radio"
+                               value="Administrator" />
+
+                        <span class="role-custom-radio"></span>
+
+                        <span class="role-text-group">
+                            <span class="role-title">Administrator</span>
+                            <span class="role-description">
+                                Manage employee records, approvals, payroll, and system settings.
+                            </span>
+                        </span>
+                    </label>
+                </div>
+
+                <!-- Sign in button -->
+                <button type="submit" class="sign-in-btn">Sign In</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

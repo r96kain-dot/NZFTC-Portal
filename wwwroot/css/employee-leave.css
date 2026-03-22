@@ -1,0 +1,171 @@
+﻿/* Leave page */
+.leave-page {
+    padding-top: 20px;
+    padding-bottom: 8px;
+}
+
+/* Top heading row */
+.leave-page-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 14px;
+}
+
+/* Page heading */
+.leave-heading h1 {
+    margin: 0 0 6px;
+    font-size: 28px;
+    font-weight: 600;
+    color: #111111;
+}
+
+.leave-heading p {
+    margin: 0;
+    font-size: 16px;
+    color: #8b93a1;
+}
+
+/* Top action */
+.leave-top-action {
+    flex-shrink: 0;
+}
+
+.request-leave-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 136px;
+    height: 40px;
+    padding: 0 18px;
+    border-radius: 10px;
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* Leave card */
+.leave-card {
+    border: 1px solid #dddddd;
+    border-radius: 14px;
+    background-color: #f5f5f5;
+    padding: 16px 16px 12px;
+}
+
+/* Card heading */
+.leave-card-heading {
+    margin-bottom: 12px;
+}
+
+    .leave-card-heading h2 {
+        margin: 0 0 4px;
+        font-size: 18px;
+        font-weight: 600;
+        color: #111111;
+    }
+
+    .leave-card-heading p {
+        margin: 0;
+        font-size: 15px;
+        color: #8b93a1;
+    }
+
+/* Table wrapper */
+.leave-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Leave table */
+.leave-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px;
+}
+
+    .leave-table thead th {
+        text-align: left;
+        padding: 10px 14px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #222222;
+        border-bottom: 1px solid #d9d9d9;
+    }
+
+    .leave-table tbody td {
+        padding: 10px 14px;
+        font-size: 14px;
+        color: #444444;
+        border-bottom: 1px solid #e1e1e1;
+        vertical-align: middle;
+    }
+
+    .leave-table tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+/* Status badges */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 98px;
+    height: 30px;
+    padding: 0 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.pending-status {
+    background-color: #ffe8a3;
+    border: 1px solid #e2b84f;
+    color: #c78600;
+}
+
+.approved-status {
+    background-color: #c8efd2;
+    border: 1px solid #64b977;
+    color: #2f9a47;
+}
+
+/* Tablet layout */
+@media (max-width: 900px) {
+    .leave-page-top {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .leave-top-action {
+        width: 100%;
+    }
+
+    .request-leave-button {
+        width: 100%;
+    }
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+    .leave-page {
+        padding-top: 18px;
+    }
+
+    .leave-heading h1 {
+        font-size: 24px;
+    }
+
+    .leave-heading p,
+    .leave-card-heading p,
+    .leave-table thead th,
+    .leave-table tbody td,
+    .status-badge {
+        font-size: 13px;
+    }
+
+    .leave-card {
+        padding: 14px 14px 10px;
+    }
+}

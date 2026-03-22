@@ -1,0 +1,204 @@
+﻿/* Page setup */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    background-color: #f5f5f5;
+    color: #111111;
+}
+
+/* Global box sizing */
+* {
+    box-sizing: border-box;
+}
+
+/* Link reset */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Portal page wrapper */
+.portal-page {
+    min-height: 100vh;
+    width: 100%;
+    background-color: #f5f5f5;
+}
+
+/* Header shell */
+.portal-header {
+    width: 100%;
+    padding: 16px 48px 0;
+    background-color: #f5f5f5;
+}
+
+/* Shared content area */
+.portal-content {
+    width: 100%;
+    padding: 0 48px 32px;
+}
+
+/* Top bar */
+.portal-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #dddddd;
+}
+
+/* Logo */
+.portal-logo img {
+    width: 250px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* User controls */
+.portal-userbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.portal-user-name {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+/* Role badge */
+.portal-role-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 74px;
+    height: 28px;
+    padding: 0 14px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.employee-role {
+    background-color: #dfe3ff;
+    color: #3a4267;
+}
+
+.admin-role {
+    background-color: #be264f;
+    color: #ffffff;
+}
+
+/* Action buttons */
+.portal-action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 28px;
+    padding: 0 14px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.support-button {
+    background-color: #dfe6eb;
+    color: #1f2937;
+}
+
+.logout-button {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+/* Navigation bar */
+.portal-nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0 10px;
+    border-bottom: 1px solid #dddddd;
+    overflow-x: auto;
+}
+
+/* Navigation links */
+.portal-nav-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 88px;
+    height: 30px;
+    padding: 0 16px;
+    border-radius: 999px;
+    background-color: #efefef;
+    color: #222222;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+    .portal-nav-link.active {
+        background-color: #000000;
+        color: #ffffff;
+    }
+
+/* Tablet adjustments */
+@media (max-width: 900px) {
+    .portal-header,
+    .portal-content {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .portal-topbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .portal-userbar {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+    .portal-header,
+    .portal-content {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .portal-logo img {
+        width: 210px;
+    }
+
+    .portal-userbar {
+        gap: 8px;
+    }
+
+    .portal-user-name {
+        width: 100%;
+        font-size: 12px;
+    }
+
+    .portal-action-button,
+    .portal-role-badge {
+        height: 28px;
+        font-size: 11px;
+        padding: 0 12px;
+    }
+
+    .portal-nav-link {
+        min-width: 82px;
+        height: 30px;
+        font-size: 12px;
+        padding: 0 14px;
+    }
+}

@@ -1,0 +1,105 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+@section Styles {
+    <!-- Admin dashboard CSS -->
+    <link rel="stylesheet" href="~/css/admin-dashboard.css" asp-append-version="true" />
+}
+
+<!-- Admin dashboard page -->
+<section class="admin-dashboard-page">
+    <!-- Page heading -->
+    <div class="admin-dashboard-heading">
+        <h1>Admin Dashboard</h1>
+        <p>Manage employees and approve requests</p>
+    </div>
+
+    <!-- Stats row -->
+    <section class="admin-stats-grid">
+        <!-- Pending leave approvals -->
+        <article class="admin-stat-card">
+            <div class="admin-stat-card-heading">
+                <h2>Pending Leave Approvals</h2>
+            </div>
+
+            <div class="admin-stat-content">
+                <div class="admin-stat-value">--</div>
+                <div class="admin-stat-icon warning-icon"></div>
+            </div>
+
+            <div class="admin-stat-action">
+                <a href="#" class="admin-card-button">View pending requests</a>
+            </div>
+        </article>
+
+        <!-- Employee count -->
+        <article class="admin-stat-card">
+            <div class="admin-stat-card-heading">
+                <h2>Employee Count</h2>
+            </div>
+
+            <div class="admin-stat-content">
+                <div class="admin-stat-value">--</div>
+                <div class="admin-stat-icon people-icon"></div>
+            </div>
+
+            <div class="admin-stat-action">
+                <a href="#" class="admin-card-button">Manage employees</a>
+            </div>
+        </article>
+
+        <!-- Open grievances -->
+        <article class="admin-stat-card">
+            <div class="admin-stat-card-heading">
+                <h2>Open Grievances</h2>
+            </div>
+
+            <div class="admin-stat-content">
+                <div class="admin-stat-value">--</div>
+                <div class="admin-stat-icon alert-icon"></div>
+            </div>
+
+            <div class="admin-stat-action">
+                <a href="#" class="admin-card-button">Review cases</a>
+            </div>
+        </article>
+    </section>
+
+    <!-- Recent leave requests -->
+    <section class="admin-requests-card">
+        <div class="admin-requests-heading">
+            <h2>Recent Leave Requests</h2>
+            <p>Requires your approval</p>
+        </div>
+
+        <div class="admin-request-list">
+            <!-- Request row -->
+            <article class="admin-request-row">
+                <div class="admin-request-text">
+                    <h3>Employee Name</h3>
+                    <p>Leave type · Dates coming soon</p>
+                </div>
+
+                <div class="admin-request-actions">
+                    <span class="request-status-badge pending-status">Pending</span>
+                    <a href="#" class="review-button">Review</a>
+                </div>
+            </article>
+
+            <!-- Request row -->
+            <article class="admin-request-row">
+                <div class="admin-request-text">
+                    <h3>Employee Name</h3>
+                    <p>Leave type · Dates coming soon</p>
+                </div>
+
+                <div class="admin-request-actions">
+                    <span class="request-status-badge pending-status">Pending</span>
+                    <a href="#" class="review-button">Review</a>
+                </div>
+            </article>
+        </div>
+    </section>
+</section>

@@ -1,0 +1,181 @@
+﻿@{
+    ViewData["Title"] = "Payroll Management";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+@section Styles {
+    <!-- Admin payroll CSS -->
+    <link rel="stylesheet" href="~/css/admin-payroll.css" asp-append-version="true" />
+}
+
+<!-- Admin payroll page -->
+<section class="admin-payroll-page">
+    <!-- Page heading -->
+    <div class="admin-payroll-heading">
+        <h1>Payroll Management</h1>
+        <p>Manage payroll records and generate payslips</p>
+    </div>
+
+    <!-- Payroll records card -->
+    <section class="admin-payroll-card">
+        <!-- Card top row -->
+        <div class="admin-payroll-card-top">
+            <div class="admin-payroll-card-heading">
+                <h2>Payroll Records</h2>
+                <p>Manage and view all employee payroll records</p>
+            </div>
+
+            <div class="admin-payroll-top-action">
+                <a href="#" class="generate-payslip-button">+ Generate Payslip</a>
+            </div>
+        </div>
+
+        <!-- Payroll record list -->
+        <div class="payroll-record-list">
+            <!-- Record row -->
+            <article class="payroll-record-row">
+                <div class="payroll-record-top">
+                    <div class="payroll-record-identity">
+                        <h3>Employee Name (EMP---)</h3>
+                        <p>Department · Position</p>
+                    </div>
+
+                    <div class="payroll-record-actions">
+                        <span class="payroll-status-badge active-status">Active</span>
+                        <a href="#" class="generate-button">Generate</a>
+                    </div>
+                </div>
+
+                <div class="payroll-record-stats">
+                    <div class="payroll-stat">
+                        <span class="payroll-stat-label">Basic Salary</span>
+                        <span class="payroll-stat-value">--</span>
+                    </div>
+
+                    <div class="payroll-stat">
+                        <span class="payroll-stat-label">Allowances</span>
+                        <span class="payroll-stat-value">--</span>
+                    </div>
+
+                    <div class="payroll-stat">
+                        <span class="payroll-stat-label">Deductions</span>
+                        <span class="payroll-stat-value">--</span>
+                    </div>
+
+                    <div class="payroll-stat">
+                        <span class="payroll-stat-label">Net Pay</span>
+                        <span class="payroll-stat-value net-pay-value">--</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Record row -->
+            <article class="payroll-record-row">
+                <div class="payroll-record-top">
+                    <div class="payroll-record-identity">
+                        <h3>Employee Name (EMP---)</h3>
+                        <p>Department · Position</p>
+                    </div>
+
+                    <div class="payroll-record-actions">
+                        <span class="payroll-status-badge active-status">Active</span>
+                        <a href="#" class="generate-button">Generate</a>
+                    </div>
+                </div>
+
+                <div class="payroll-record-stats">
+                    <div class="payroll-stat">
+                        <span class="payroll-stat-label">Basic Salary</span>
+                        <span class="payroll-stat-value">--</span>
+                    </div>
+
+                    <div class="payroll-stat">
+                        <span class="payroll-stat-label">Allowances</span>
+                        <span class="payroll-stat-value">--</span>
+                    </div>
+
+                    <div class="payroll-stat">
+                        <span class="payroll-stat-label">Deductions</span>
+                        <span class="payroll-stat-value">--</span>
+                    </div>
+
+                    <div class="payroll-stat">
+                        <span class="payroll-stat-label">Net Pay</span>
+                        <span class="payroll-stat-value net-pay-value">--</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Record row -->
+            <article class="payroll-record-row">
+                <div class="payroll-record-top">
+                    <div class="payroll-record-identity">
+                        <h3>Employee Name (EMP---)</h3>
+                        <p>Department · Position</p>
+                    </div>
+
+                    <div class="payroll-record-actions">
+                        <span class="payroll-status-badge active-status">Active</span>
+                        <a href="#" class="generate-button">Generate</a>
+                    </div>
+                </div>
+
+                <div class="payroll-record-stats">
+                    <div class="payroll-stat">
+                        <span class="payroll-stat-label">Basic Salary</span>
+                        <span class="payroll-stat-value">--</span>
+                    </div>
+
+                    <div class="payroll-stat">
+                        <span class="payroll-stat-label">Allowances</span>
+                        <span class="payroll-stat-value">--</span>
+                    </div>
+
+                    <div class="payroll-stat">
+                        <span class="payroll-stat-label">Deductions</span>
+                        <span class="payroll-stat-value">--</span>
+                    </div>
+
+                    <div class="payroll-stat">
+                        <span class="payroll-stat-label">Net Pay</span>
+                        <span class="payroll-stat-value net-pay-value">--</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Payroll summary card -->
+    <section class="admin-payroll-summary-card">
+        <div class="admin-payroll-summary-heading">
+            <h2>Payroll Summary</h2>
+            <p>Current month overview</p>
+        </div>
+
+        <div class="admin-payroll-summary-grid">
+            <!-- Summary stat -->
+            <article class="summary-stat-card">
+                <h3>Total Employees</h3>
+                <div class="summary-stat-value">--</div>
+            </article>
+
+            <!-- Summary stat -->
+            <article class="summary-stat-card">
+                <h3>Total Basic Salary</h3>
+                <div class="summary-stat-value">--</div>
+            </article>
+
+            <!-- Summary stat -->
+            <article class="summary-stat-card">
+                <h3>Total Deductions</h3>
+                <div class="summary-stat-value deductions-value">--</div>
+            </article>
+
+            <!-- Summary stat -->
+            <article class="summary-stat-card">
+                <h3>Total Net Pay</h3>
+                <div class="summary-stat-value net-summary-value">--</div>
+            </article>
+        </div>
+    </section>
+</section>

@@ -1,0 +1,105 @@
+﻿@{
+    var portalUserName = ViewData["PortalUserName"]?.ToString() ?? "User Name - ID";
+    var portalRole = ViewData["PortalRole"]?.ToString() ?? "Employee";
+    var activeTab = ViewData["ActiveTab"]?.ToString() ?? "Dashboard";
+
+    var navItems = ViewData["PortalNavItems"] as string[] ?? new[] { "Dashboard" };
+}
+
+<!-- Portal header -->
+<header class="portal-header">
+    <!-- Top bar -->
+    <div class="portal-topbar">
+        <!-- Logo -->
+        <div class="portal-logo">
+            <img src="~/images/default_logo.png" alt="NZFTC Portal logo" />
+        </div>
+
+        <!-- User controls -->
+        <div class="portal-userbar">
+            <span class="portal-user-name">@portalUserName</span>
+
+            <span class="portal-role-badge @(portalRole.ToLower() == "admin" ? "admin-role" : "employee-role")">
+                @portalRole
+            </span>
+
+            <a href="#" class="portal-action-button support-button">Support</a>
+            <a asp-controller="Account" asp-action="Logout" class="portal-action-button logout-button">Logout</a>
+        </div>
+    </div>
+
+    <!-- Navigation bar -->
+    <nav class="portal-nav">
+        @foreach (var item in navItems)
+        {
+            var cssClass = item == activeTab ? "portal-nav-link active" : "portal-nav-link";
+            var controllerName = "Employee";
+            var actionName = "Dashboard";
+
+            // Employee nav routes
+            if (portalRole == "Employee")
+            {
+                switch (item)
+                {
+                    case "Dashboard":
+                        controllerName = "Employee";
+                        actionName = "Dashboard";
+                        break;
+
+                    case "Leave":
+                        controllerName = "Employee";
+                        actionName = "Leave";
+                        break;
+
+                    case "Payroll":
+                        controllerName = "Employee";
+                        actionName = "Payroll";
+                        break;
+
+                    case "My Info":
+                        controllerName = "Employee";
+                        actionName = "MyInfo";
+                        break;
+                }
+            }
+
+            // Admin nav routes
+            if (portalRole == "Admin")
+            {
+                switch (item)
+                {
+                    case "Dashboard":
+                        controllerName = "Admin";
+                        actionName = "Dashboard";
+                        break;
+
+                    case "Leave":
+                        controllerName = "Admin";
+                        actionName = "Leave";
+                        break;
+
+                    case "Payroll":
+                        controllerName = "Admin";
+                        actionName = "Payroll";
+                        break;
+
+                    case "Employees":
+                        controllerName = "Admin";
+                        actionName = "Employees";
+                        break;
+
+                    case "Cases":
+                        controllerName = "Admin";
+                        actionName = "Cases";
+                        break;
+                }
+            }
+
+            <a asp-controller="@controllerName"
+               asp-action="@actionName"
+               class="@cssClass">
+                @item
+            </a>
+        }
+    </nav>
+</header>

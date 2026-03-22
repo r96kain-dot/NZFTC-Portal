@@ -1,0 +1,135 @@
+﻿@{
+    ViewData["Title"] = "Employee Payroll";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+@section Styles {
+    <!-- Employee payroll CSS -->
+    <link rel="stylesheet" href="~/css/employee-payroll.css" asp-append-version="true" />
+}
+
+<!-- Payroll page -->
+<section class="payroll-page">
+    <!-- Page heading -->
+    <div class="payroll-heading">
+        <h1>My Payslips</h1>
+        <p>View a summary of your recent payslips</p>
+    </div>
+
+    <!-- Payslip grid -->
+    <section class="payslip-grid">
+        <!-- Payslip card -->
+        <article class="payslip-card">
+            <div class="payslip-card-top">
+                <div>
+                    <h2>Payslip</h2>
+                    <p>Pay Date: --/--/----</p>
+                </div>
+
+                <span class="payslip-id-badge">PS---</span>
+            </div>
+
+            <div class="payslip-details">
+                <div class="payslip-row">
+                    <span>Basic Salary</span>
+                    <span>--</span>
+                </div>
+
+                <div class="payslip-row">
+                    <span>Allowances</span>
+                    <span>--</span>
+                </div>
+
+                <div class="payslip-row deductions-row">
+                    <span>Deductions</span>
+                    <span>--</span>
+                </div>
+
+                <div class="payslip-row net-pay-row">
+                    <span>Net Pay</span>
+                    <span>--</span>
+                </div>
+            </div>
+
+            <div class="payslip-action">
+                <a href="#" class="view-button">View</a>
+            </div>
+        </article>
+
+        <!-- Payslip card -->
+        <article class="payslip-card">
+            <div class="payslip-card-top">
+                <div>
+                    <h2>Payslip</h2>
+                    <p>Pay Date: --/--/----</p>
+                </div>
+
+                <span class="payslip-id-badge">PS---</span>
+            </div>
+
+            <div class="payslip-details">
+                <div class="payslip-row">
+                    <span>Basic Salary</span>
+                    <span>--</span>
+                </div>
+
+                <div class="payslip-row">
+                    <span>Allowances</span>
+                    <span>--</span>
+                </div>
+
+                <div class="payslip-row deductions-row">
+                    <span>Deductions</span>
+                    <span>--</span>
+                </div>
+
+                <div class="payslip-row net-pay-row">
+                    <span>Net Pay</span>
+                    <span>--</span>
+                </div>
+            </div>
+
+            <div class="payslip-action">
+                <a href="#" class="view-button">View</a>
+            </div>
+        </article>
+
+        <!-- Payslip card -->
+        <article class="payslip-card">
+            <div class="payslip-card-top">
+                <div>
+                    <h2>Payslip</h2>
+                    <p>Pay Date: --/--/----</p>
+                </div>
+
+                <span class="payslip-id-badge">PS---</span>
+            </div>
+
+            <div class="payslip-details">
+                <div class="payslip-row">
+                    <span>Basic Salary</span>
+                    <span>--</span>
+                </div>
+
+                <div class="payslip-row">
+                    <span>Allowances</span>
+                    <span>--</span>
+                </div>
+
+                <div class="payslip-row deductions-row">
+                    <span>Deductions</span>
+                    <span>--</span>
+                </div>
+
+                <div class="payslip-row net-pay-row">
+                    <span>Net Pay</span>
+                    <span>--</span>
+                </div>
+            </div>
+
+            <div class="payslip-action">
+                <a href="#" class="view-button">View</a>
+            </div>
+        </article>
+    </section>
+</section>
