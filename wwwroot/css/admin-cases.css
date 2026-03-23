@@ -109,12 +109,174 @@
     min-width: 68px;
     height: 30px;
     padding: 0 12px;
+    border: none;
     border-radius: 6px;
     background-color: #000000;
     color: #ffffff;
     font-size: 13px;
     font-weight: 500;
+    cursor: pointer;
 }
+
+    .view-button:hover {
+        opacity: 0.92;
+    }
+
+/* Case modal */
+.case-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 2000;
+}
+
+    .case-modal-overlay.show {
+        display: flex;
+    }
+
+.case-modal-open {
+    overflow: hidden;
+}
+
+.case-modal {
+    position: relative;
+    width: 100%;
+    max-width: 340px;
+    background: #f4f4f4;
+    border-radius: 12px;
+    padding: 18px 18px 16px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+}
+
+.case-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+    line-height: 1;
+    color: #444444;
+    cursor: pointer;
+}
+
+.case-modal-header {
+    margin-bottom: 18px;
+}
+
+    .case-modal-header h2 {
+        margin: 0 0 4px;
+        font-size: 1.55rem;
+        font-weight: 500;
+        color: #111111;
+    }
+
+    .case-modal-header p {
+        margin: 0;
+        font-size: 0.82rem;
+        color: #a0a0a0;
+    }
+
+.case-modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.case-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+    .case-form-group label {
+        font-size: 0.92rem;
+        font-weight: 500;
+        color: #111111;
+    }
+
+    .case-form-group input,
+    .case-form-group select,
+    .case-form-group textarea {
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid #cfcfcf;
+        border-radius: 4px;
+        background: #efefef;
+        padding: 8px 10px;
+        font-size: 0.88rem;
+        color: #222222;
+        outline: none;
+    }
+
+        .case-form-group input[readonly],
+        .case-form-group textarea[readonly] {
+            color: #444444;
+        }
+
+    .case-form-group select {
+        min-height: 38px;
+        padding: 8px 10px;
+        line-height: 1.2;
+    }
+
+    .case-form-group input {
+        min-height: 30px;
+    }
+
+    .case-form-group textarea {
+        min-height: 58px;
+        resize: none;
+    }
+
+        .case-form-group input:focus,
+        .case-form-group select:focus,
+        .case-form-group textarea:focus {
+            border-color: #111111;
+            background: #ffffff;
+        }
+
+.case-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.case-cancel-button {
+    min-width: 66px;
+    height: 24px;
+    padding: 0 12px;
+    border: 1px solid #bdbdbd;
+    border-radius: 6px;
+    background: #efefef;
+    color: #222222;
+    font-size: 0.78rem;
+    cursor: pointer;
+}
+
+.case-update-button {
+    min-width: 108px;
+    height: 34px;
+    padding: 0 16px;
+    border: none;
+    border-radius: 10px;
+    background: #000000;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+    .case-cancel-button:hover,
+    .case-update-button:hover {
+        opacity: 0.92;
+    }
 
 /* Mobile layout */
 @media (max-width: 700px) {
@@ -133,5 +295,9 @@
     .case-status-badge,
     .view-button {
         font-size: 13px;
+    }
+
+    .case-modal {
+        max-width: 100%;
     }
 }

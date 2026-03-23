@@ -26,23 +26,23 @@
             </div>
 
             <div class="admin-payroll-top-action">
-                <a href="#" class="generate-payslip-button">+ Generate Payslip</a>
+                <button type="button" class="generate-payslip-button" id="openPayslipModal">+ Generate Payslip</button>
             </div>
         </div>
 
         <!-- Payroll record list -->
         <div class="payroll-record-list">
             <!-- Record row -->
-            <article class="payroll-record-row">
+            <div class="payroll-record-row">
                 <div class="payroll-record-top">
                     <div class="payroll-record-identity">
-                        <h3>Employee Name (EMP---)</h3>
-                        <p>Department · Position</p>
+                        <h3>--</h3>
+                        <p>--</p>
                     </div>
 
                     <div class="payroll-record-actions">
                         <span class="payroll-status-badge active-status">Active</span>
-                        <a href="#" class="generate-button">Generate</a>
+                        <button type="button" class="generate-button">Generate</button>
                     </div>
                 </div>
 
@@ -67,19 +67,19 @@
                         <span class="payroll-stat-value net-pay-value">--</span>
                     </div>
                 </div>
-            </article>
+            </div>
 
             <!-- Record row -->
-            <article class="payroll-record-row">
+            <div class="payroll-record-row">
                 <div class="payroll-record-top">
                     <div class="payroll-record-identity">
-                        <h3>Employee Name (EMP---)</h3>
-                        <p>Department · Position</p>
+                        <h3>--</h3>
+                        <p>--</p>
                     </div>
 
                     <div class="payroll-record-actions">
                         <span class="payroll-status-badge active-status">Active</span>
-                        <a href="#" class="generate-button">Generate</a>
+                        <button type="button" class="generate-button">Generate</button>
                     </div>
                 </div>
 
@@ -104,19 +104,19 @@
                         <span class="payroll-stat-value net-pay-value">--</span>
                     </div>
                 </div>
-            </article>
+            </div>
 
             <!-- Record row -->
-            <article class="payroll-record-row">
+            <div class="payroll-record-row">
                 <div class="payroll-record-top">
                     <div class="payroll-record-identity">
-                        <h3>Employee Name (EMP---)</h3>
-                        <p>Department · Position</p>
+                        <h3>--</h3>
+                        <p>--</p>
                     </div>
 
                     <div class="payroll-record-actions">
                         <span class="payroll-status-badge active-status">Active</span>
-                        <a href="#" class="generate-button">Generate</a>
+                        <button type="button" class="generate-button">Generate</button>
                     </div>
                 </div>
 
@@ -141,11 +141,11 @@
                         <span class="payroll-stat-value net-pay-value">--</span>
                     </div>
                 </div>
-            </article>
+            </div>
         </div>
     </section>
 
-    <!-- Payroll summary card -->
+    <!-- Payroll summary -->
     <section class="admin-payroll-summary-card">
         <div class="admin-payroll-summary-heading">
             <h2>Payroll Summary</h2>
@@ -153,29 +153,119 @@
         </div>
 
         <div class="admin-payroll-summary-grid">
-            <!-- Summary stat -->
-            <article class="summary-stat-card">
+            <div class="summary-stat-card">
                 <h3>Total Employees</h3>
                 <div class="summary-stat-value">--</div>
-            </article>
+            </div>
 
-            <!-- Summary stat -->
-            <article class="summary-stat-card">
+            <div class="summary-stat-card">
                 <h3>Total Basic Salary</h3>
                 <div class="summary-stat-value">--</div>
-            </article>
+            </div>
 
-            <!-- Summary stat -->
-            <article class="summary-stat-card">
+            <div class="summary-stat-card">
                 <h3>Total Deductions</h3>
                 <div class="summary-stat-value deductions-value">--</div>
-            </article>
+            </div>
 
-            <!-- Summary stat -->
-            <article class="summary-stat-card">
+            <div class="summary-stat-card">
                 <h3>Total Net Pay</h3>
                 <div class="summary-stat-value net-summary-value">--</div>
-            </article>
+            </div>
         </div>
     </section>
 </section>
+
+<!-- Generate payslip modal -->
+<div class="payslip-modal-overlay" id="payslipModal">
+    <div class="payslip-modal" role="dialog" aria-modal="true" aria-labelledby="payslipModalTitle">
+        <!-- Modal close -->
+        <button type="button" class="payslip-modal-close" id="closePayslipModal" aria-label="Close generate payslip modal">
+            x
+        </button>
+
+        <!-- Modal heading -->
+        <div class="payslip-modal-header">
+            <h2 id="payslipModalTitle">Generate Payslip</h2>
+            <p>Create a new payslip for an employee</p>
+        </div>
+
+        <!-- Modal form -->
+        <form class="payslip-modal-form" id="payslipForm">
+            <div class="payslip-form-group">
+                <label for="payslipEmployee">Employee</label>
+                <select id="payslipEmployee" name="payslipEmployee">
+                    <option value="">--</option>
+                </select>
+            </div>
+
+            <div class="payslip-form-group">
+                <label for="payPeriod">Pay Period</label>
+                <input type="text" id="payPeriod" name="payPeriod" placeholder="MM / YYYY" />
+            </div>
+
+            <div class="payslip-form-group">
+                <label for="basicSalary">Basic Salary (NZD)</label>
+                <input type="text" id="basicSalary" name="basicSalary" placeholder="--" />
+            </div>
+
+            <div class="payslip-form-group">
+                <label for="allowances">Allowances (NZD)</label>
+                <input type="text" id="allowances" name="allowances" placeholder="--" />
+            </div>
+
+            <div class="payslip-form-group">
+                <label for="deductions">Deductions (NZD)</label>
+                <input type="text" id="deductions" name="deductions" placeholder="--" />
+            </div>
+
+            <div class="payslip-modal-actions">
+                <button type="button" class="payslip-cancel-button" id="cancelPayslipModal">Cancel</button>
+                <button type="submit" class="payslip-submit-button">Generate Payslip</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const payslipModal = document.getElementById("payslipModal");
+        const openPayslipModal = document.getElementById("openPayslipModal");
+        const closePayslipModal = document.getElementById("closePayslipModal");
+        const cancelPayslipModal = document.getElementById("cancelPayslipModal");
+        const payslipForm = document.getElementById("payslipForm");
+
+        function showPayslipModal() {
+            payslipModal.classList.add("show");
+            document.body.classList.add("payslip-modal-open");
+        }
+
+        function hidePayslipModal() {
+            payslipModal.classList.remove("show");
+            document.body.classList.remove("payslip-modal-open");
+        }
+
+        openPayslipModal.addEventListener("click", showPayslipModal);
+        closePayslipModal.addEventListener("click", hidePayslipModal);
+        cancelPayslipModal.addEventListener("click", hidePayslipModal);
+
+        payslipModal.addEventListener("click", function (event) {
+            if (event.target === payslipModal) {
+                hidePayslipModal();
+            }
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape" && payslipModal.classList.contains("show")) {
+                hidePayslipModal();
+            }
+        });
+
+        payslipForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Stub for future payslip generation function
+            console.log("Generate Payslip clicked");
+        });
+    </script>
+}

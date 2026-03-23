@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Cases Management";
+    ViewData["Title"] = "Case Management";
     Layout = "~/Views/Shared/_PortalLayout.cshtml";
 }
 
@@ -40,19 +40,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Case row -->
                     <tr>
-                        <td>CR---</td>
-                        <td>Employee Name</td>
-                        <td>employee@nzftc.co.nz</td>
                         <td>--</td>
                         <td>--</td>
-                        <td>Grievance</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
                         <td>
                             <span class="case-status-badge pending-status">Pending</span>
                         </td>
                         <td>
-                            <a href="#" class="view-button">View</a>
+                            <button type="button" class="view-button" id="openCaseModal">View</button>
                         </td>
                     </tr>
                 </tbody>
@@ -60,3 +59,102 @@
         </div>
     </section>
 </section>
+
+<!-- Case details modal -->
+<div class="case-modal-overlay" id="caseModal">
+    <div class="case-modal" role="dialog" aria-modal="true" aria-labelledby="caseModalTitle">
+        <!-- Modal close -->
+        <button type="button" class="case-modal-close" id="closeCaseModal" aria-label="Close case details modal">
+            x
+        </button>
+
+        <!-- Modal heading -->
+        <div class="case-modal-header">
+            <h2 id="caseModalTitle">Case Details</h2>
+            <p>--</p>
+        </div>
+
+        <!-- Modal form -->
+        <form class="case-modal-form" id="caseUpdateForm">
+            <div class="case-form-group">
+                <label for="caseEmployee">Employee</label>
+                <input type="text" id="caseEmployee" value="--" readonly />
+            </div>
+
+            <div class="case-form-group">
+                <label for="caseSubmittedDate">Submitted Date</label>
+                <input type="text" id="caseSubmittedDate" value="--" readonly />
+            </div>
+
+            <div class="case-form-group">
+                <label for="caseSubject">Subject</label>
+                <input type="text" id="caseSubject" value="--" readonly />
+            </div>
+
+            <div class="case-form-group">
+                <label for="caseDescription">Description</label>
+                <textarea id="caseDescription" rows="4" readonly>--</textarea>
+            </div>
+
+            <div class="case-form-group">
+                <label for="caseStatusUpdate">Update Case Status</label>
+                <select id="caseStatusUpdate" name="caseStatusUpdate">
+                    <option value="">--</option>
+                </select>
+            </div>
+
+            <div class="case-form-group">
+                <label for="caseNotes">Update Case</label>
+                <textarea id="caseNotes" name="caseNotes" rows="3" placeholder="--"></textarea>
+            </div>
+
+            <div class="case-modal-actions">
+                <button type="button" class="case-cancel-button" id="cancelCaseModal">Cancel</button>
+                <button type="submit" class="case-update-button">Update Case</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const caseModal = document.getElementById("caseModal");
+        const openCaseModal = document.getElementById("openCaseModal");
+        const closeCaseModal = document.getElementById("closeCaseModal");
+        const cancelCaseModal = document.getElementById("cancelCaseModal");
+        const caseUpdateForm = document.getElementById("caseUpdateForm");
+
+        function showCaseModal() {
+            caseModal.classList.add("show");
+            document.body.classList.add("case-modal-open");
+        }
+
+        function hideCaseModal() {
+            caseModal.classList.remove("show");
+            document.body.classList.remove("case-modal-open");
+        }
+
+        openCaseModal.addEventListener("click", showCaseModal);
+        closeCaseModal.addEventListener("click", hideCaseModal);
+        cancelCaseModal.addEventListener("click", hideCaseModal);
+
+        caseModal.addEventListener("click", function (event) {
+            if (event.target === caseModal) {
+                hideCaseModal();
+            }
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape" && caseModal.classList.contains("show")) {
+                hideCaseModal();
+            }
+        });
+
+        caseUpdateForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Stub for future case update function
+            console.log("Update Case clicked");
+        });
+    </script>
+}

@@ -26,7 +26,7 @@
             </div>
 
             <div class="employee-directory-action">
-                <a href="#" class="add-employee-button">+ Add Employee</a>
+                <button type="button" class="add-employee-button" id="openAddEmployeeModal">+ Add Employee</button>
             </div>
         </div>
 
@@ -46,7 +46,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Active employee row -->
                     <tr>
                         <td>EMP---</td>
                         <td>Employee Name</td>
@@ -58,11 +57,9 @@
                             <span class="employee-status-badge active-status">Active</span>
                         </td>
                         <td>
-                            <a href="#" class="view-button">View</a>
+                            <button type="button" class="view-button">View</button>
                         </td>
                     </tr>
-
-                    <!-- On leave employee row -->
                     <tr>
                         <td>EMP---</td>
                         <td>Employee Name</td>
@@ -74,7 +71,7 @@
                             <span class="employee-status-badge leave-status">On Leave</span>
                         </td>
                         <td>
-                            <a href="#" class="view-button">View</a>
+                            <button type="button" class="view-button">View</button>
                         </td>
                     </tr>
                 </tbody>
@@ -82,3 +79,148 @@
         </div>
     </section>
 </section>
+
+<!-- Add employee modal -->
+<div class="employee-modal-overlay" id="addEmployeeModal">
+    <div class="employee-modal" role="dialog" aria-modal="true" aria-labelledby="addEmployeeModalTitle">
+        <!-- Modal close -->
+        <button type="button" class="employee-modal-close" id="closeAddEmployeeModal" aria-label="Close add employee modal">
+            x
+        </button>
+
+        <!-- Modal heading -->
+        <div class="employee-modal-header">
+            <h2 id="addEmployeeModalTitle">Add Employee</h2>
+            <p>Create a new employee profile</p>
+        </div>
+
+        <!-- Modal form -->
+        <form class="employee-modal-form" id="addEmployeeForm">
+            <div class="employee-form-group">
+                <label for="employeeFullName">Full Name</label>
+                <input type="text" id="employeeFullName" name="employeeFullName" placeholder="Enter full name" />
+            </div>
+
+            <div class="employee-form-row">
+                <div class="employee-form-group">
+                    <label for="employeeContact">Contact</label>
+                    <input type="text" id="employeeContact" name="employeeContact" placeholder="Enter contact number" />
+                </div>
+
+                <div class="employee-form-group">
+                    <label for="employeeEmergencyContact">Emergency Contact</label>
+                    <input type="text" id="employeeEmergencyContact" name="employeeEmergencyContact" placeholder="Enter emergency contact" />
+                </div>
+            </div>
+
+            <div class="employee-form-group">
+                <label for="employeeEmail">Email</label>
+                <input type="text" id="employeeEmail" name="employeeEmail" placeholder="Enter email address" />
+            </div>
+
+            <div class="employee-form-row">
+                <div class="employee-form-group">
+                    <label for="employeeRole">Role</label>
+                    <select id="employeeRole" name="employeeRole">
+                        <option value="">Select role</option>
+                        <option value="employee">Employee</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+
+                <div class="employee-form-group">
+                    <label for="employeeRoleId">Role ID</label>
+                    <input type="text" id="employeeRoleId" name="employeeRoleId" placeholder="EMP001 / ADM001" />
+                </div>
+            </div>
+
+            <div class="employee-form-group hidden-role-field" id="confirmationCodeGroup">
+                <label for="employeeConfirmationCode">Confirmation Code</label>
+                <input type="text" id="employeeConfirmationCode" name="employeeConfirmationCode" placeholder="12 digit confirmation code" maxlength="12" />
+            </div>
+
+            <div class="employee-form-group">
+                <label for="employeeTraining">Prior Training</label>
+                <textarea id="employeeTraining" name="employeeTraining" rows="3" placeholder="Enter prior training if any"></textarea>
+            </div>
+
+            <div class="employee-form-group">
+                <label for="employeeHistory">Employment History</label>
+                <textarea id="employeeHistory" name="employeeHistory" rows="3" placeholder="Enter employment history if any"></textarea>
+            </div>
+
+            <div class="employee-form-row">
+                <div class="employee-form-group">
+                    <label for="employeeDepartment">Department</label>
+                    <input type="text" id="employeeDepartment" name="employeeDepartment" placeholder="Enter department" />
+                </div>
+
+                <div class="employee-form-group">
+                    <label for="employeePosition">Position</label>
+                    <input type="text" id="employeePosition" name="employeePosition" placeholder="Enter position" />
+                </div>
+            </div>
+
+            <div class="employee-modal-actions">
+                <button type="button" class="employee-cancel-button" id="cancelAddEmployeeModal">Cancel</button>
+                <button type="submit" class="employee-submit-button">Add Employee</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const addEmployeeModal = document.getElementById("addEmployeeModal");
+        const openAddEmployeeModal = document.getElementById("openAddEmployeeModal");
+        const closeAddEmployeeModal = document.getElementById("closeAddEmployeeModal");
+        const cancelAddEmployeeModal = document.getElementById("cancelAddEmployeeModal");
+        const addEmployeeForm = document.getElementById("addEmployeeForm");
+        const employeeRole = document.getElementById("employeeRole");
+        const confirmationCodeGroup = document.getElementById("confirmationCodeGroup");
+
+        function showAddEmployeeModal() {
+            addEmployeeModal.classList.add("show");
+            document.body.classList.add("employee-modal-open");
+        }
+
+        function hideAddEmployeeModal() {
+            addEmployeeModal.classList.remove("show");
+            document.body.classList.remove("employee-modal-open");
+        }
+
+        function toggleConfirmationCodeField() {
+            if (employeeRole.value === "admin") {
+                confirmationCodeGroup.classList.remove("hidden-role-field");
+            } else {
+                confirmationCodeGroup.classList.add("hidden-role-field");
+            }
+        }
+
+        openAddEmployeeModal.addEventListener("click", showAddEmployeeModal);
+        closeAddEmployeeModal.addEventListener("click", hideAddEmployeeModal);
+        cancelAddEmployeeModal.addEventListener("click", hideAddEmployeeModal);
+
+        addEmployeeModal.addEventListener("click", function (event) {
+            if (event.target === addEmployeeModal) {
+                hideAddEmployeeModal();
+            }
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape" && addEmployeeModal.classList.contains("show")) {
+                hideAddEmployeeModal();
+            }
+        });
+
+        employeeRole.addEventListener("change", toggleConfirmationCodeField);
+        toggleConfirmationCodeField();
+
+        addEmployeeForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Stub for future add employee function
+            console.log("Add Employee clicked");
+        });
+    </script>
+}

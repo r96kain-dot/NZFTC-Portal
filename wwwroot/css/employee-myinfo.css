@@ -2,11 +2,14 @@
 .myinfo-page {
     padding-top: 20px;
     padding-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 /* Page heading */
 .myinfo-heading {
-    margin-bottom: 14px;
+    margin-bottom: 0;
 }
 
     .myinfo-heading h1 {
@@ -21,14 +24,6 @@
         font-size: 16px;
         color: #8b93a1;
     }
-
-/* Main layout */
-.myinfo-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 0.95fr;
-    gap: 24px;
-    align-items: start;
-}
 
 /* Shared card */
 .myinfo-card {
@@ -75,18 +70,29 @@
         color: #8b93a1;
     }
 
-/* Info box */
-.info-box {
+/* Info input */
+.info-input {
+    width: 100%;
     min-height: 36px;
-    display: flex;
-    align-items: center;
     padding: 0 12px;
     border: 1px solid #d9d9d9;
     border-radius: 6px;
     background-color: #f0f0f0;
     font-size: 14px;
     color: #444444;
+    box-sizing: border-box;
+    outline: none;
 }
+
+    .info-input[readonly] {
+        cursor: default;
+    }
+
+    .info-input.editing {
+        background-color: #ffffff;
+        border-color: #111111;
+        color: #111111;
+    }
 
 /* Status box */
 .status-box {
@@ -114,25 +120,31 @@
     gap: 8px;
 }
 
-    .editable-row .info-box {
+    .editable-row .info-input {
         flex: 1;
     }
 
 /* Edit button */
 .edit-button {
     min-width: 56px;
-    height: 30px;
+    height: 28px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 0 12px;
+    border: none;
     border-radius: 6px;
     background-color: #000000;
     color: #ffffff;
     font-size: 13px;
     font-weight: 500;
     flex-shrink: 0;
+    cursor: pointer;
 }
+
+    .edit-button:hover {
+        opacity: 0.92;
+    }
 
 /* Empty spacer */
 .info-group-empty {
@@ -162,14 +174,20 @@
     align-items: center;
     justify-content: center;
     min-width: 128px;
-    height: 38px;
+    height: 34px;
     padding: 0 16px;
+    border: none;
     border-radius: 10px;
     background-color: #000000;
     color: #ffffff;
     font-size: 14px;
     font-weight: 500;
+    cursor: pointer;
 }
+
+    .submit-case-button:hover {
+        opacity: 0.92;
+    }
 
 /* Cases table */
 .cases-table-wrapper {
@@ -223,10 +241,162 @@
     color: #c78600;
 }
 
+/* Case modal */
+.case-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 2000;
+}
+
+    .case-modal-overlay.show {
+        display: flex;
+    }
+
+.case-modal-open {
+    overflow: hidden;
+}
+
+.case-modal {
+    position: relative;
+    width: 100%;
+    max-width: 340px;
+    background: #f4f4f4;
+    border-radius: 12px;
+    padding: 18px 18px 16px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+}
+
+.case-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+    line-height: 1;
+    color: #444444;
+    cursor: pointer;
+}
+
+.case-modal-header {
+    margin-bottom: 18px;
+}
+
+    .case-modal-header h2 {
+        margin: 0 0 4px;
+        font-size: 1.55rem;
+        font-weight: 500;
+        color: #111111;
+    }
+
+    .case-modal-header p {
+        margin: 0;
+        font-size: 0.82rem;
+        color: #a0a0a0;
+    }
+
+.case-modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.case-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+    .case-form-group label {
+        font-size: 0.92rem;
+        font-weight: 500;
+        color: #111111;
+    }
+
+    .case-form-group select,
+    .case-form-group input,
+    .case-form-group textarea {
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid #cfcfcf;
+        border-radius: 4px;
+        background: #efefef;
+        padding: 8px 10px;
+        font-size: 0.88rem;
+        color: #222222;
+        outline: none;
+    }
+
+    .case-form-group select {
+        height: 30px;
+    }
+
+    .case-form-group input {
+        height: 30px;
+    }
+
+    .case-form-group textarea {
+        min-height: 58px;
+        resize: none;
+    }
+
+        .case-form-group select:focus,
+        .case-form-group input:focus,
+        .case-form-group textarea:focus {
+            border-color: #111111;
+        }
+
+.case-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.case-cancel-button {
+    min-width: 66px;
+    height: 24px;
+    padding: 0 12px;
+    border: 1px solid #bdbdbd;
+    border-radius: 6px;
+    background: #efefef;
+    color: #222222;
+    font-size: 0.78rem;
+    cursor: pointer;
+}
+
+.case-submit-button {
+    min-width: 108px;
+    height: 34px;
+    padding: 0 16px;
+    border: none;
+    border-radius: 10px;
+    background: #000000;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+    .case-cancel-button:hover,
+    .case-submit-button:hover {
+        opacity: 0.92;
+    }
+
 /* Tablet layout */
 @media (max-width: 1100px) {
-    .myinfo-grid {
+    .personal-info-grid {
         grid-template-columns: 1fr;
+    }
+
+    .info-group-empty {
+        display: none;
     }
 }
 
@@ -243,20 +413,11 @@
     .myinfo-heading p,
     .card-heading p,
     .info-group label,
-    .info-box,
+    .info-input,
     .cases-table th,
     .cases-table td,
     .case-status {
         font-size: 13px;
-    }
-
-    .personal-info-grid {
-        grid-template-columns: 1fr;
-        column-gap: 0;
-    }
-
-    .info-group-empty {
-        display: none;
     }
 
     .editable-row {
@@ -272,5 +433,9 @@
     .cases-top {
         flex-direction: column;
         align-items: stretch;
+    }
+
+    .case-modal {
+        max-width: 100%;
     }
 }

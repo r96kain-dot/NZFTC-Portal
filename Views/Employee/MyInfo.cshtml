@@ -1,10 +1,10 @@
 ﻿@{
-    ViewData["Title"] = "Employee Information";
+    ViewData["Title"] = "Employee My Info";
     Layout = "~/Views/Shared/_PortalLayout.cshtml";
 }
 
 @section Styles {
-    <!-- Employee information CSS -->
+    <!-- Employee my info CSS -->
     <link rel="stylesheet" href="~/css/employee-myinfo.css" asp-append-version="true" />
 }
 
@@ -16,124 +16,213 @@
         <p>View and manage your personal information and cases</p>
     </div>
 
-    <!-- Main content grid -->
-    <section class="myinfo-grid">
-        <!-- Personal information card -->
-        <article class="myinfo-card personal-info-card">
-            <!-- Card heading -->
+    <!-- Personal information card -->
+    <section class="myinfo-card personal-info-card">
+        <!-- Card heading -->
+        <div class="card-heading">
+            <h2>Personal Information</h2>
+            <p>Your employee details and contact information</p>
+        </div>
+
+        <!-- Personal information grid -->
+        <div class="personal-info-grid">
+            <div class="info-group">
+                <label for="employeeId">Employee ID</label>
+                <input type="text" id="employeeId" class="info-input" value="--" readonly />
+            </div>
+
+            <div class="info-group">
+                <label>Status</label>
+                <div class="status-box active-status">Active</div>
+            </div>
+
+            <div class="info-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" class="info-input" value="--" readonly />
+            </div>
+
+            <div class="info-group info-group-empty"></div>
+
+            <div class="info-group">
+                <label for="contactNumber">Contact Number</label>
+                <div class="editable-row">
+                    <input type="text" id="contactNumber" class="info-input editable-input" value="--" readonly />
+                    <button type="button" class="edit-button" data-target="contactNumber">Edit</button>
+                </div>
+            </div>
+
+            <div class="info-group">
+                <label for="emergencyContact">Emergency Contact</label>
+                <div class="editable-row">
+                    <input type="text" id="emergencyContact" class="info-input editable-input" value="--" readonly />
+                    <button type="button" class="edit-button" data-target="emergencyContact">Edit</button>
+                </div>
+            </div>
+
+            <div class="info-group">
+                <label for="emailAddress">Email Address</label>
+                <input type="text" id="emailAddress" class="info-input" value="--" readonly />
+            </div>
+
+            <div class="info-group info-group-empty"></div>
+
+            <div class="info-group">
+                <label for="department">Department</label>
+                <input type="text" id="department" class="info-input" value="--" readonly />
+            </div>
+
+            <div class="info-group">
+                <label for="position">Position</label>
+                <input type="text" id="position" class="info-input" value="--" readonly />
+            </div>
+
+            <div class="info-group">
+                <label for="joinDate">Join Date</label>
+                <input type="text" id="joinDate" class="info-input" value="--" readonly />
+            </div>
+
+            <div class="info-group info-group-empty"></div>
+        </div>
+    </section>
+
+    <!-- Cases card -->
+    <section class="myinfo-card cases-card">
+        <!-- Cases heading row -->
+        <div class="cases-top">
             <div class="card-heading">
-                <h2>Personal Information</h2>
-                <p>Your employee details and contact information</p>
+                <h2>My Cases</h2>
+                <p>Submit and track your grievances and resignation</p>
             </div>
 
-            <!-- Info grid -->
-            <div class="personal-info-grid">
-                <!-- Employee ID -->
-                <div class="info-group">
-                    <label>Employee ID</label>
-                    <div class="info-box">--</div>
-                </div>
-
-                <!-- Status -->
-                <div class="info-group">
-                    <label>Status</label>
-                    <div class="status-box active-status">Active</div>
-                </div>
-
-                <!-- Full name -->
-                <div class="info-group">
-                    <label>Full Name</label>
-                    <div class="info-box">--</div>
-                </div>
-
-                <!-- Empty spacer -->
-                <div class="info-group info-group-empty"></div>
-
-                <!-- Contact number -->
-                <div class="info-group">
-                    <label>Contact Number</label>
-
-                    <div class="editable-row">
-                        <div class="info-box">--</div>
-                        <a href="#" class="edit-button">Edit</a>
-                    </div>
-                </div>
-
-                <!-- Emergency contact -->
-                <div class="info-group">
-                    <label>Emergency Contact</label>
-
-                    <div class="editable-row">
-                        <div class="info-box">--</div>
-                        <a href="#" class="edit-button">Edit</a>
-                    </div>
-                </div>
-
-                <!-- Email address -->
-                <div class="info-group">
-                    <label>Email Address</label>
-                    <div class="info-box">--</div>
-                </div>
-
-                <!-- Empty spacer -->
-                <div class="info-group info-group-empty"></div>
-
-                <!-- Department -->
-                <div class="info-group">
-                    <label>Department</label>
-                    <div class="info-box">--</div>
-                </div>
-
-                <!-- Position -->
-                <div class="info-group">
-                    <label>Position</label>
-                    <div class="info-box">--</div>
-                </div>
-
-                <!-- Join date -->
-                <div class="info-group">
-                    <label>Join Date</label>
-                    <div class="info-box">--</div>
-                </div>
+            <div class="cases-action">
+                <button type="button" class="submit-case-button" id="openCaseModal">+ Submit Case</button>
             </div>
-        </article>
+        </div>
 
-        <!-- Cases card -->
-        <article class="myinfo-card cases-card">
-            <!-- Card heading row -->
-            <div class="cases-top">
-                <div class="card-heading">
-                    <h2>My Cases</h2>
-                    <p>Submit and track your grievances and resignation</p>
-                </div>
-
-                <div class="cases-action">
-                    <a href="#" class="submit-case-button">+ Submit Case</a>
-                </div>
-            </div>
-
-            <!-- Cases table -->
-            <div class="cases-table-wrapper">
-                <table class="cases-table">
-                    <thead>
-                        <tr>
-                            <th>Case ID</th>
-                            <th>Type</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Placeholder row -->
-                        <tr>
-                            <td>--</td>
-                            <td>--</td>
-                            <td>
-                                <span class="case-status pending-status">Pending</span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </article>
+        <!-- Cases table -->
+        <div class="cases-table-wrapper">
+            <table class="cases-table">
+                <thead>
+                    <tr>
+                        <th>Case ID</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>--</td>
+                        <td>--</td>
+                        <td><span class="case-status pending-status">Pending</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 </section>
+
+<!-- Submit case modal -->
+<div class="case-modal-overlay" id="caseModal">
+    <div class="case-modal" role="dialog" aria-modal="true" aria-labelledby="caseModalTitle">
+        <!-- Modal close -->
+        <button type="button" class="case-modal-close" id="closeCaseModal" aria-label="Close submit case modal">
+            x
+        </button>
+
+        <!-- Modal heading -->
+        <div class="case-modal-header">
+            <h2 id="caseModalTitle">Submit a Case</h2>
+            <p>Submit a new leave request for approval</p>
+        </div>
+
+        <!-- Modal form -->
+        <form class="case-modal-form" id="caseRequestForm">
+            <div class="case-form-group">
+                <label for="caseType">Case Type</label>
+                <select id="caseType" name="caseType">
+                    <option value="grievance">Grievance</option>
+                    <option value="resignation">Resignation</option>
+                    <option value="complaint">Complaint</option>
+                </select>
+            </div>
+
+            <div class="case-form-group">
+                <label for="caseSubject">Subject</label>
+                <input type="text" id="caseSubject" name="caseSubject" placeholder="Brief summary of the issue" />
+            </div>
+
+            <div class="case-form-group">
+                <label for="caseDescription">Description</label>
+                <textarea id="caseDescription" name="caseDescription" rows="5" placeholder="Detailed description of your grievance or resignation reason"></textarea>
+            </div>
+
+            <div class="case-modal-actions">
+                <button type="button" class="case-cancel-button" id="cancelCaseModal">Cancel</button>
+                <button type="submit" class="case-submit-button">Submit Case</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const caseModal = document.getElementById("caseModal");
+        const openCaseModal = document.getElementById("openCaseModal");
+        const closeCaseModal = document.getElementById("closeCaseModal");
+        const cancelCaseModal = document.getElementById("cancelCaseModal");
+        const caseRequestForm = document.getElementById("caseRequestForm");
+        const editButtons = document.querySelectorAll(".edit-button");
+
+        function showCaseModal() {
+            caseModal.classList.add("show");
+            document.body.classList.add("case-modal-open");
+        }
+
+        function hideCaseModal() {
+            caseModal.classList.remove("show");
+            document.body.classList.remove("case-modal-open");
+        }
+
+        openCaseModal.addEventListener("click", showCaseModal);
+        closeCaseModal.addEventListener("click", hideCaseModal);
+        cancelCaseModal.addEventListener("click", hideCaseModal);
+
+        caseModal.addEventListener("click", function (event) {
+            if (event.target === caseModal) {
+                hideCaseModal();
+            }
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape" && caseModal.classList.contains("show")) {
+                hideCaseModal();
+            }
+        });
+
+        caseRequestForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Stub for future case submission function
+            console.log("Submit Case clicked");
+        });
+
+        editButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                const targetId = button.getAttribute("data-target");
+                const targetInput = document.getElementById(targetId);
+
+                if (targetInput.hasAttribute("readonly")) {
+                    targetInput.removeAttribute("readonly");
+                    targetInput.classList.add("editing");
+                    targetInput.focus();
+                    targetInput.select();
+                    button.textContent = "Save";
+                } else {
+                    targetInput.setAttribute("readonly", "readonly");
+                    targetInput.classList.remove("editing");
+                    button.textContent = "Edit";
+                }
+            });
+        });
+    </script>
+}

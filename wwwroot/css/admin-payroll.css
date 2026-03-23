@@ -72,12 +72,18 @@
     min-width: 148px;
     height: 38px;
     padding: 0 16px;
+    border: none;
     border-radius: 10px;
     background-color: #000000;
     color: #ffffff;
     font-size: 14px;
     font-weight: 500;
+    cursor: pointer;
 }
+
+    .generate-payslip-button:hover {
+        opacity: 0.92;
+    }
 
 /* Record list */
 .payroll-record-list {
@@ -149,12 +155,18 @@
     min-width: 78px;
     height: 30px;
     padding: 0 14px;
+    border: none;
     border-radius: 6px;
     background-color: #000000;
     color: #ffffff;
     font-size: 13px;
     font-weight: 500;
+    cursor: pointer;
 }
+
+    .generate-button:hover {
+        opacity: 0.92;
+    }
 
 /* Record stats */
 .payroll-record-stats {
@@ -224,6 +236,141 @@
     color: #16a34a;
 }
 
+/* Payslip modal */
+.payslip-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 2000;
+}
+
+    .payslip-modal-overlay.show {
+        display: flex;
+    }
+
+.payslip-modal-open {
+    overflow: hidden;
+}
+
+.payslip-modal {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    background: #f4f4f4;
+    border-radius: 12px;
+    padding: 20px 20px 18px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+}
+
+.payslip-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+    line-height: 1;
+    color: #444444;
+    cursor: pointer;
+}
+
+.payslip-modal-header {
+    margin-bottom: 18px;
+}
+
+    .payslip-modal-header h2 {
+        margin: 0 0 4px;
+        font-size: 1.45rem;
+        font-weight: 500;
+        color: #111111;
+    }
+
+    .payslip-modal-header p {
+        margin: 0;
+        font-size: 0.82rem;
+        color: #a0a0a0;
+    }
+
+.payslip-modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.payslip-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+    .payslip-form-group label {
+        font-size: 0.88rem;
+        font-weight: 500;
+        color: #111111;
+    }
+
+    .payslip-form-group select,
+    .payslip-form-group input {
+        width: 100%;
+        box-sizing: border-box;
+        min-height: 38px;
+        border: 1px solid #cfcfcf;
+        border-radius: 4px;
+        background: #efefef;
+        padding: 8px 10px;
+        font-size: 0.88rem;
+        color: #222222;
+        outline: none;
+    }
+
+        .payslip-form-group select:focus,
+        .payslip-form-group input:focus {
+            border-color: #111111;
+            background: #ffffff;
+        }
+
+.payslip-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.payslip-cancel-button {
+    min-width: 66px;
+    height: 24px;
+    padding: 0 12px;
+    border: 1px solid #bdbdbd;
+    border-radius: 6px;
+    background: #efefef;
+    color: #222222;
+    font-size: 0.78rem;
+    cursor: pointer;
+}
+
+.payslip-submit-button {
+    min-width: 136px;
+    height: 36px;
+    padding: 0 16px;
+    border: none;
+    border-radius: 10px;
+    background: #000000;
+    color: #ffffff;
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+    .payslip-cancel-button:hover,
+    .payslip-submit-button:hover {
+        opacity: 0.92;
+    }
+
 /* Tablet layout */
 @media (max-width: 1100px) {
     .payroll-record-stats,
@@ -270,5 +417,9 @@
 
     .generate-payslip-button {
         width: 100%;
+    }
+
+    .payslip-modal {
+        max-width: 100%;
     }
 }

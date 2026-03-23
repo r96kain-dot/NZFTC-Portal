@@ -16,10 +16,10 @@
         <p>Manage employees and approve requests</p>
     </div>
 
-    <!-- Stats row -->
-    <section class="admin-stats-grid">
+    <!-- Stats grid -->
+    <div class="admin-stats-grid">
         <!-- Pending leave approvals -->
-        <article class="admin-stat-card">
+        <section class="admin-stat-card">
             <div class="admin-stat-card-heading">
                 <h2>Pending Leave Approvals</h2>
             </div>
@@ -27,22 +27,21 @@
             <div class="admin-stat-content">
                 <div class="admin-stat-value">--</div>
 
-                <span class="admin-stat-icon warning-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" />
-                        <path d="M12 7V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                        <path d="M12 12L15 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <div class="admin-stat-icon warning-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8"></circle>
+                        <path d="M12 7.6V12.2L15 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
-                </span>
+                </div>
             </div>
 
             <div class="admin-stat-action">
-                <a href="#" class="admin-card-button">View pending requests</a>
+                <a asp-controller="Admin" asp-action="Leave" class="admin-card-button">View pending requests</a>
             </div>
-        </article>
+        </section>
 
         <!-- Employee count -->
-        <article class="admin-stat-card">
+        <section class="admin-stat-card">
             <div class="admin-stat-card-heading">
                 <h2>Employee Count</h2>
             </div>
@@ -50,23 +49,23 @@
             <div class="admin-stat-content">
                 <div class="admin-stat-value">--</div>
 
-                <span class="admin-stat-icon people-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="9" cy="9" r="3" stroke="currentColor" stroke-width="2" />
-                        <circle cx="17" cy="11" r="2.5" stroke="currentColor" stroke-width="2" />
-                        <path d="M4.5 19C4.5 16.5 6.8 15 9.5 15C12.2 15 14.5 16.5 14.5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                        <path d="M14.5 18C14.9 16.4 16.4 15.5 18 15.5C19.8 15.5 21 16.5 21 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <div class="admin-stat-icon people-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M9 11.2C10.7673 11.2 12.2 9.76731 12.2 8C12.2 6.23269 10.7673 4.8 9 4.8C7.23269 4.8 5.8 6.23269 5.8 8C5.8 9.76731 7.23269 11.2 9 11.2Z" stroke="currentColor" stroke-width="1.8"></path>
+                        <path d="M15.8 10.4C17.236 10.4 18.4 9.23604 18.4 7.8C18.4 6.36396 17.236 5.2 15.8 5.2C14.3641 5.2 13.2 6.36396 13.2 7.8C13.2 9.23604 14.3641 10.4 15.8 10.4Z" stroke="currentColor" stroke-width="1.8"></path>
+                        <path d="M3.8 18.4C3.8 15.991 5.97003 14.2 8.8 14.2C11.63 14.2 13.8 15.991 13.8 18.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                        <path d="M13.4 18.4C13.4 16.5706 15.0047 15.2 17.1 15.2C19.1953 15.2 20.8 16.5706 20.8 18.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
                     </svg>
-                </span>
+                </div>
             </div>
 
             <div class="admin-stat-action">
-                <a href="#" class="admin-card-button">Manage employees</a>
+                <a asp-controller="Admin" asp-action="Employees" class="admin-card-button">Manage employees</a>
             </div>
-        </article>
+        </section>
 
         <!-- Open grievances -->
-        <article class="admin-stat-card">
+        <section class="admin-stat-card">
             <div class="admin-stat-card-heading">
                 <h2>Open Grievances</h2>
             </div>
@@ -74,20 +73,20 @@
             <div class="admin-stat-content">
                 <div class="admin-stat-value">--</div>
 
-                <span class="admin-stat-icon alert-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" />
-                        <path d="M12 7.5V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                        <circle cx="12" cy="16.5" r="1.2" fill="currentColor" />
+                <div class="admin-stat-icon alert-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8"></circle>
+                        <path d="M12 7.5V12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                        <circle cx="12" cy="16.2" r="1" fill="currentColor"></circle>
                     </svg>
-                </span>
+                </div>
             </div>
 
             <div class="admin-stat-action">
-                <a href="#" class="admin-card-button">Review cases</a>
+                <a asp-controller="Admin" asp-action="Cases" class="admin-card-button">Review cases</a>
             </div>
-        </article>
-    </section>
+        </section>
+    </div>
 
     <!-- Recent leave requests -->
     <section class="admin-requests-card">
@@ -97,8 +96,7 @@
         </div>
 
         <div class="admin-request-list">
-            <!-- Request row -->
-            <article class="admin-request-row">
+            <div class="admin-request-row">
                 <div class="admin-request-text">
                     <h3>Employee Name</h3>
                     <p>Leave type · Dates coming soon</p>
@@ -106,12 +104,11 @@
 
                 <div class="admin-request-actions">
                     <span class="request-status-badge pending-status">Pending</span>
-                    <a href="#" class="review-button">Review</a>
+                    <a asp-controller="Admin" asp-action="Leave" class="review-button">Review</a>
                 </div>
-            </article>
+            </div>
 
-            <!-- Request row -->
-            <article class="admin-request-row">
+            <div class="admin-request-row">
                 <div class="admin-request-text">
                     <h3>Employee Name</h3>
                     <p>Leave type · Dates coming soon</p>
@@ -119,9 +116,9 @@
 
                 <div class="admin-request-actions">
                     <span class="request-status-badge pending-status">Pending</span>
-                    <a href="#" class="review-button">Review</a>
+                    <a asp-controller="Admin" asp-action="Leave" class="review-button">Review</a>
                 </div>
-            </article>
+            </div>
         </div>
     </section>
 </section>

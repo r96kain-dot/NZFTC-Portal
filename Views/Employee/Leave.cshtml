@@ -20,7 +20,7 @@
 
         <!-- Request leave button -->
         <div class="leave-top-action">
-            <a href="#" class="request-leave-button">+ Request Leave</a>
+            <button type="button" class="request-leave-button" id="openLeaveModal">+ Request Leave</button>
         </div>
     </div>
 
@@ -49,31 +49,130 @@
                 <tbody>
                     <!-- Placeholder row -->
                     <tr>
-                        <td>--</td>
-                        <td>--</td>
-                        <td>--</td>
-                        <td>--</td>
-                        <td>--</td>
+                        <td>LV-001</td>
+                        <td>Annual Leave</td>
+                        <td>12/04/2026</td>
+                        <td>14/04/2026</td>
+                        <td>3</td>
                         <td>
                             <span class="status-badge pending-status">Pending</span>
                         </td>
-                        <td>--</td>
+                        <td>Family trip</td>
                     </tr>
 
                     <!-- Placeholder row -->
                     <tr>
-                        <td>--</td>
-                        <td>--</td>
-                        <td>--</td>
-                        <td>--</td>
-                        <td>--</td>
+                        <td>LV-002</td>
+                        <td>Sick Leave</td>
+                        <td>22/03/2026</td>
+                        <td>22/03/2026</td>
+                        <td>1</td>
                         <td>
                             <span class="status-badge approved-status">Approved</span>
                         </td>
-                        <td>--</td>
+                        <td>Medical appointment</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </section>
 </section>
+
+<!-- Leave request modal -->
+<div class="leave-modal-overlay" id="leaveModal">
+    <div class="leave-modal" role="dialog" aria-modal="true" aria-labelledby="leaveModalTitle">
+        <!-- Modal close -->
+        <button type="button" class="leave-modal-close" id="closeLeaveModal" aria-label="Close leave request modal">
+            x
+        </button>
+
+        <!-- Modal heading -->
+        <div class="leave-modal-header">
+            <h2 id="leaveModalTitle">Request Leave</h2>
+            <p>Submit a new leave request for approval</p>
+        </div>
+
+        <!-- Modal form -->
+        <form class="leave-modal-form" id="leaveRequestForm">
+            <!-- Leave type -->
+            <div class="leave-form-group">
+                <label for="leaveType">Leave Type</label>
+                <select id="leaveType" name="leaveType">
+                    <option value="">Annual Leave</option>
+                    <option value="annual">Annual Leave</option>
+                    <option value="sick">Sick Leave</option>
+                    <option value="bereavement">Bereavement Leave</option>
+                    <option value="unpaid">Unpaid Leave</option>
+                </select>
+            </div>
+
+            <!-- Date row -->
+            <div class="leave-form-row">
+                <div class="leave-form-group">
+                    <label for="startDate">Start Date</label>
+                    <input type="text" id="startDate" name="startDate" placeholder="dd/mm/yyyy" />
+                </div>
+
+                <div class="leave-form-group">
+                    <label for="endDate">End Date</label>
+                    <input type="text" id="endDate" name="endDate" placeholder="dd/mm/yyyy" />
+                </div>
+            </div>
+
+            <!-- Reason -->
+            <div class="leave-form-group">
+                <label for="leaveReason">Reason</label>
+                <textarea id="leaveReason" name="leaveReason" rows="5" placeholder="Brief description of your leave request"></textarea>
+            </div>
+
+            <!-- Modal actions -->
+            <div class="leave-modal-actions">
+                <button type="button" class="leave-cancel-button" id="cancelLeaveModal">Cancel</button>
+                <button type="submit" class="leave-submit-button">Submit Request</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const leaveModal = document.getElementById("leaveModal");
+        const openLeaveModal = document.getElementById("openLeaveModal");
+        const closeLeaveModal = document.getElementById("closeLeaveModal");
+        const cancelLeaveModal = document.getElementById("cancelLeaveModal");
+        const leaveRequestForm = document.getElementById("leaveRequestForm");
+
+        function showLeaveModal() {
+            leaveModal.classList.add("show");
+            document.body.classList.add("leave-modal-open");
+        }
+
+        function hideLeaveModal() {
+            leaveModal.classList.remove("show");
+            document.body.classList.remove("leave-modal-open");
+        }
+
+        openLeaveModal.addEventListener("click", showLeaveModal);
+        closeLeaveModal.addEventListener("click", hideLeaveModal);
+        cancelLeaveModal.addEventListener("click", hideLeaveModal);
+
+        leaveModal.addEventListener("click", function (event) {
+            if (event.target === leaveModal) {
+                hideLeaveModal();
+            }
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape" && leaveModal.classList.contains("show")) {
+                hideLeaveModal();
+            }
+        });
+
+        leaveRequestForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Stub for future leave request function
+            console.log("Submit Request clicked");
+        });
+    </script>
+}
