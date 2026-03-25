@@ -1,6 +1,12 @@
 ﻿@{
     ViewData["Title"] = "Employee Dashboard";
     Layout = "~/Views/Shared/_PortalLayout.cshtml";
+
+    // Loads the holiday preview list for the dashboard card.
+    var holidayPreview = ViewData["HolidayPreview"] as string[][] ?? Array.Empty<string[]>();
+
+    // Loads the full holiday list for the holiday pop-out.
+    var holidayFullList = ViewData["HolidayFullList"] as string[][] ?? Array.Empty<string[]>();
 }
 
 @section Styles {
@@ -16,75 +22,82 @@
         <p>Welcome back, here's your overview</p>
     </div>
 
-    <!-- Leave balance section -->
+    <!-- Leave balance card -->
     <section class="dashboard-card leave-balance-card">
+        <!-- Section heading -->
         <div class="section-heading">
             <h2>Leave Balance</h2>
             <p>Your available leave days</p>
         </div>
 
+        <!-- Leave balance grid -->
         <div class="leave-balance-grid">
             <!-- Annual leave -->
-            <article class="mini-stat-card">
+            <div class="mini-stat-card">
                 <div class="mini-stat-top">
                     <span class="mini-stat-icon annual-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4 11a8 8 0 0 1 16 0H4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
-                            <path d="M12 11V18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                            <path d="M12 18c0 1.7 1.2 3 3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M12 4C8.68629 4 6 6.68629 6 10V11H18V10C18 6.68629 15.3137 4 12 4Z" stroke="currentColor" stroke-width="1.8"></path>
+                            <path d="M12 11V20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                            <path d="M8.5 20H15.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
                         </svg>
                     </span>
+
                     <span class="mini-stat-title">Annual Leave</span>
                 </div>
 
                 <div class="mini-stat-value">--</div>
                 <div class="mini-stat-subtext">of -- days</div>
-            </article>
+            </div>
 
             <!-- Sick leave -->
-            <article class="mini-stat-card">
+            <div class="mini-stat-card">
                 <div class="mini-stat-top">
                     <span class="mini-stat-icon sick-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" />
-                            <path d="M12 7.5V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                            <circle cx="12" cy="16.5" r="1.2" fill="currentColor" />
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8"></circle>
+                            <path d="M12 7.5V12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                            <circle cx="12" cy="16.2" r="1" fill="currentColor"></circle>
                         </svg>
                     </span>
+
                     <span class="mini-stat-title">Sick Leave</span>
                 </div>
 
                 <div class="mini-stat-value">--</div>
                 <div class="mini-stat-subtext">of -- days</div>
-            </article>
+            </div>
 
             <!-- Personal leave -->
-            <article class="mini-stat-card">
+            <div class="mini-stat-card">
                 <div class="mini-stat-top">
                     <span class="mini-stat-icon personal-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" />
-                            <path d="M12 8V12L15 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8"></circle>
+                            <path d="M12 7.8V12L14.6 14.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
                     </span>
+
                     <span class="mini-stat-title">Personal Leave</span>
                 </div>
 
                 <div class="mini-stat-value">--</div>
                 <div class="mini-stat-subtext">of -- days</div>
-            </article>
+            </div>
         </div>
     </section>
 
-    <!-- Bottom content row -->
-    <section class="dashboard-bottom-grid">
-        <!-- Payslip card -->
-        <article class="dashboard-card info-card">
+    <!-- Bottom grid -->
+    <div class="dashboard-bottom-grid">
+        <!-- Latest payslip card -->
+        <section class="dashboard-card info-card">
+            <!-- Section heading -->
             <div class="section-heading">
                 <h2>Latest Payslip</h2>
                 <p>Payroll summary</p>
             </div>
 
+            <!-- Payslip details -->
             <div class="payslip-details">
                 <div class="payslip-row">
                     <span>Basic Salary</span>
@@ -107,87 +120,123 @@
                 </div>
             </div>
 
+            <!-- Card action -->
             <div class="card-action">
                 <a asp-controller="Employee" asp-action="Payroll" class="primary-button">View All</a>
             </div>
-        </article>
+        </section>
 
-        <!-- Holidays card -->
-        <article class="dashboard-card info-card">
-            <div class="section-heading">
-                <h2>Upcoming Holidays</h2>
-                <p>New Zealand public holidays</p>
+        <!-- Upcoming holidays card -->
+        <section class="dashboard-card info-card">
+            <!-- Card heading and holiday action -->
+            <div class="holiday-card-top">
+                <div class="section-heading">
+                    <h2>Upcoming Holidays</h2>
+                    <p>New Zealand public holidays</p>
+                </div>
+
+                <button type="button" class="holiday-view-all-button" id="openHolidayModal">View All</button>
             </div>
 
+            <!-- Holiday preview list -->
             <div class="holiday-list">
-                <!-- Holiday row -->
-                <div class="holiday-row">
-                    <div class="holiday-text">
-                        <span class="holiday-name">Holiday Name</span>
-                        <span class="holiday-date">Date coming soon</span>
+                @foreach (var holiday in holidayPreview)
+                {
+                    <div class="holiday-row">
+                        <div class="holiday-text">
+                            <span class="holiday-name">@holiday[0]</span>
+                            <span class="holiday-date">@holiday[1]</span>
+                        </div>
+
+                        <span class="holiday-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <rect x="4" y="5" width="16" height="15" rx="2" stroke="currentColor" stroke-width="1.8"></rect>
+                                <path d="M8 3.8V7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                                <path d="M16 3.8V7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                                <path d="M4 9H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                            </svg>
+                        </span>
                     </div>
-
-                    <span class="holiday-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="3.5" y="5.5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.8" />
-                            <path d="M7 3.8V7.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-                            <path d="M17 3.8V7.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-                            <path d="M3.5 9H20.5" stroke="currentColor" stroke-width="1.8" />
-                        </svg>
-                    </span>
-                </div>
-
-                <!-- Holiday row -->
-                <div class="holiday-row">
-                    <div class="holiday-text">
-                        <span class="holiday-name">Holiday Name</span>
-                        <span class="holiday-date">Date coming soon</span>
-                    </div>
-
-                    <span class="holiday-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="3.5" y="5.5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.8" />
-                            <path d="M7 3.8V7.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-                            <path d="M17 3.8V7.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-                            <path d="M3.5 9H20.5" stroke="currentColor" stroke-width="1.8" />
-                        </svg>
-                    </span>
-                </div>
-
-                <!-- Holiday row -->
-                <div class="holiday-row">
-                    <div class="holiday-text">
-                        <span class="holiday-name">Holiday Name</span>
-                        <span class="holiday-date">Date coming soon</span>
-                    </div>
-
-                    <span class="holiday-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="3.5" y="5.5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.8" />
-                            <path d="M7 3.8V7.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-                            <path d="M17 3.8V7.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-                            <path d="M3.5 9H20.5" stroke="currentColor" stroke-width="1.8" />
-                        </svg>
-                    </span>
-                </div>
-
-                <!-- Holiday row -->
-                <div class="holiday-row">
-                    <div class="holiday-text">
-                        <span class="holiday-name">Holiday Name</span>
-                        <span class="holiday-date">Date coming soon</span>
-                    </div>
-
-                    <span class="holiday-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="3.5" y="5.5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.8" />
-                            <path d="M7 3.8V7.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-                            <path d="M17 3.8V7.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-                            <path d="M3.5 9H20.5" stroke="currentColor" stroke-width="1.8" />
-                        </svg>
-                    </span>
-                </div>
+                }
             </div>
-        </article>
-    </section>
+        </section>
+    </div>
 </section>
+
+<!-- Holiday list pop-out -->
+<div class="holiday-modal-overlay" id="holidayModal">
+    <div class="holiday-modal" role="dialog" aria-modal="true" aria-labelledby="holidayModalTitle">
+        <!-- Modal close -->
+        <button type="button" class="holiday-modal-close" id="closeHolidayModal" aria-label="Close holiday list modal">
+            x
+        </button>
+
+        <!-- Modal heading -->
+        <div class="holiday-modal-header">
+            <h2 id="holidayModalTitle">Upcoming Holidays</h2>
+            <p>New Zealand public holidays and company-wide events</p>
+        </div>
+
+        <!-- Full holiday list -->
+        <div class="holiday-modal-list">
+            <div class="holiday-list">
+                @foreach (var holiday in holidayFullList)
+                {
+                    <div class="holiday-row">
+                        <div class="holiday-text">
+                            <span class="holiday-name">@holiday[0]</span>
+                            <span class="holiday-date">@holiday[1]</span>
+                        </div>
+
+                        <span class="holiday-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <rect x="4" y="5" width="16" height="15" rx="2" stroke="currentColor" stroke-width="1.8"></rect>
+                                <path d="M8 3.8V7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                                <path d="M16 3.8V7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                                <path d="M4 9H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                            </svg>
+                        </span>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const holidayModal = document.getElementById("holidayModal");
+        const openHolidayModal = document.getElementById("openHolidayModal");
+        const closeHolidayModal = document.getElementById("closeHolidayModal");
+
+        // This page script block is used because the dashboard now has a holiday pop-out.
+        // It keeps the open and close logic attached to this page only.
+        function showHolidayModal() {
+            holidayModal.classList.add("show");
+            document.body.classList.add("holiday-modal-open");
+        }
+
+        // Closes the holiday pop-out and returns the user to the dashboard.
+        function hideHolidayModal() {
+            holidayModal.classList.remove("show");
+            document.body.classList.remove("holiday-modal-open");
+        }
+
+        openHolidayModal.addEventListener("click", showHolidayModal);
+        closeHolidayModal.addEventListener("click", hideHolidayModal);
+
+        // Closes the holiday pop-out when the overlay is clicked.
+        holidayModal.addEventListener("click", function (event) {
+            if (event.target === holidayModal) {
+                hideHolidayModal();
+            }
+        });
+
+        // Closes the holiday pop-out when Escape is pressed.
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape" && holidayModal.classList.contains("show")) {
+                hideHolidayModal();
+            }
+        });
+    </script>
+}

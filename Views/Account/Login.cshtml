@@ -1,6 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Login";
     Layout = null;
+
+    // Checks whether the page was loaded with a login error.
+    var hasLoginError = TempData["LoginError"] != null;
 }
 
 <!DOCTYPE html>
@@ -15,6 +18,52 @@
 
     <!-- Login page CSS -->
     <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+
+    <style>
+        /* Keeps the forgot password row positioned for the popup. */
+        .form-link-row {
+            position: relative;
+        }
+
+        /* Shows a small popup close to the forgot password link. */
+        .forgot-password-popup {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 8px;
+            background-color: #111111;
+            color: #ffffff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            line-height: 1.3;
+            white-space: nowrap;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+            z-index: 3000;
+            display: none;
+        }
+
+            /* Shows the popup when the helper class is added. */
+            .forgot-password-popup.show {
+                display: block;
+            }
+
+        /* Styles the login error as a small inline message. */
+        .login-error-message {
+            margin-top: 4px;
+            margin-bottom: 8px;
+            padding: 10px 12px;
+            border: 1px solid #f0b7b7;
+            border-radius: 8px;
+            background-color: #fff4f4;
+            color: #b42318;
+            font-size: 13px;
+            line-height: 1.35;
+        }
+
+        line-height: 1.35;
+        }
+    </style>
 </head>
 <body>
     <!-- Login page wrapper -->
@@ -46,10 +95,22 @@
                            placeholder="Enter your password" />
                 </div>
 
-                <!-- Forgot password link -->
+                <!-- Forgot password link and popup -->
                 <div class="form-link-row">
-                    <a href="#" class="forgot-password">Forgot Password?</a>
+                    <a href="#" class="forgot-password" id="forgotPasswordLink">Forgot Password?</a>
+
+                    <div class="forgot-password-popup" id="forgotPasswordPopup">
+                        Instructions have been sent to your email.
+                    </div>
                 </div>
+
+                <!-- Login error message -->
+                @if (hasLoginError)
+                {
+                    <div class="login-error-message">
+                        @TempData["LoginError"]
+                    </div>
+                }
 
                 <!-- Role selection -->
                 <div class="role-section">
@@ -95,5 +156,27 @@
             </form>
         </section>
     </main>
+
+    <script>
+        const forgotPasswordLink = document.getElementById("forgotPasswordLink");
+        const forgotPasswordPopup = document.getElementById("forgotPasswordPopup");
+        let forgotPasswordPopupTimer;
+
+        // Shows a small popup beside the forgot password link when clicked.
+        forgotPasswordLink.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            // Resets the popup timer if the link is clicked again.
+            clearTimeout(forgotPasswordPopupTimer);
+
+            // Displays the popup beside the forgot password link.
+            forgotPasswordPopup.classList.add("show");
+
+            // Hides the popup after a short delay.
+            forgotPasswordPopupTimer = setTimeout(function () {
+                forgotPasswordPopup.classList.remove("show");
+            }, 2200);
+        });
+    </script>
 </body>
 </html>
