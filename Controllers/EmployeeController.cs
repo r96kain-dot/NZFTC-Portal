@@ -1,257 +1,204 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using NZFTC_Portal.Models;
+using System.Linq;
 
 namespace NZFTC_Portal.Controllers
 {
     public class EmployeeController : Controller
     {
-        // Loads the employee dashboard.
-        public IActionResult Dashboard()
+        private readonly AppDbContext _context;
+
+        public EmployeeController(AppDbContext context)
         {
-            // Stops non-employee users from opening employee pages.
-            IActionResult? accessResult = RequireEmployeeAccess();
-            if (accessResult != null)
-            {
-                return accessResult;
-            }
-
-            // Loads shared header data for the dashboard.
-            ApplySharedHeaderData("Dashboard");
-
-            // Sends holiday preview data and full holiday list data to the view.
-            ApplyHolidayViewData();
-
-            return View();
+            _context = context;
         }
 
-        // Loads the employee leave page.
-        public IActionResult Leave()
+        // Check if logged-in user is employee
+        private bool IsEmployee()
         {
-            // Stops non-employee users from opening employee pages.
-            IActionResult? accessResult = RequireEmployeeAccess();
-            if (accessResult != null)
-            {
-                return accessResult;
-            }
-
-            // Loads shared header data for the leave page.
-            ApplySharedHeaderData("Leave");
-
-            return View();
+            return HttpContext.Session.GetString("Role") == "Employee";
         }
 
-        // Loads the employee payroll page.
-        public IActionResult Payroll()
+        // Reusable header setup
+        private void SetEmployeeViewData(string activeTab)
         {
-            // Stops non-employee users from opening employee pages.
-            IActionResult? accessResult = RequireEmployeeAccess();
-            if (accessResult != null)
-            {
-                return accessResult;
-            }
+            var fullName = HttpContext.Session.GetString("FullName") ?? "Employee";
+            var userId = HttpContext.Session.GetInt32("UserId") ?? 0;
 
-            // Loads shared header data for the payroll page.
-            ApplySharedHeaderData("Payroll");
-
-            return View();
-        }
-
-        // Loads the employee information page.
-        public IActionResult MyInfo()
-        {
-            // Stops non-employee users from opening employee pages.
-            IActionResult? accessResult = RequireEmployeeAccess();
-            if (accessResult != null)
-            {
-                return accessResult;
-            }
-
-            // Ensures the profile stump has default values to display.
-            EnsureEmployeeProfileData();
-
-            // Loads shared header data for the info page.
-            ApplySharedHeaderData("My Info");
-
-            // Sends the current profile values to the view.
-            ApplyProfileViewData();
-
-            return View();
-        }
-
-        // Saves an allowed employee profile field.
-        [HttpPost]
-        public IActionResult UpdateProfile(string updateField, string contactNumber, string emergencyContact)
-        {
-            // Stops non-employee users from posting to employee pages.
-            IActionResult? accessResult = RequireEmployeeAccess();
-            if (accessResult != null)
-            {
-                return accessResult;
-            }
-
-            // Ensures the profile stump exists before saving updates.
-            EnsureEmployeeProfileData();
-
-            // Updates the contact number when that field is submitted.
-            if (updateField == "contactNumber")
-            {
-                HttpContext.Session.SetString("EmployeeContactNumber", CleanProfileValue(contactNumber));
-            }
-
-            // Updates the emergency contact when that field is submitted.
-            if (updateField == "emergencyContact")
-            {
-                HttpContext.Session.SetString("EmployeeEmergencyContact", CleanProfileValue(emergencyContact));
-            }
-
-            return RedirectToAction("MyInfo");
-        }
-
-        // Loads the employee support page.
-        public IActionResult Support()
-        {
-            // Stops non-employee users from opening employee pages.
-            IActionResult? accessResult = RequireEmployeeAccess();
-            if (accessResult != null)
-            {
-                return accessResult;
-            }
-
-            // Loads shared header data for the support page.
-            ApplySharedHeaderData(string.Empty);
-
-            return View();
-        }
-
-        // Checks whether the current session belongs to an employee user.
-        private IActionResult? RequireEmployeeAccess()
-        {
-            string? currentRole = HttpContext.Session.GetString("PortalRole");
-
-            if (string.IsNullOrWhiteSpace(currentRole))
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
-            if (currentRole != "Employee")
-            {
-                return RedirectToAction("Dashboard", "Admin");
-            }
-
-            return null;
-        }
-
-        // Applies shared header values for all employee pages.
-        private void ApplySharedHeaderData(string activeTab)
-        {
-            ViewData["PortalUserName"] = HttpContext.Session.GetString("PortalUserName") ?? "Employee Name - EMP000";
+            ViewData["PortalUserName"] = $"{fullName} - EMP{userId}";
             ViewData["PortalRole"] = "Employee";
             ViewData["ActiveTab"] = activeTab;
             ViewData["PortalNavItems"] = new[] { "Dashboard", "Leave", "Payroll", "My Info" };
         }
 
-        // Creates default employee profile values for the sprint 1 stump.
-        private void EnsureEmployeeProfileData()
+        // Optional test page
+        public IActionResult Index()
         {
-            if (string.IsNullOrWhiteSpace(HttpContext.Session.GetString("EmployeeId")))
-            {
-                HttpContext.Session.SetString("EmployeeId", "EMP000");
-            }
+            if (!IsEmployee())
+                return RedirectToAction("Login", "Account");
 
-            if (string.IsNullOrWhiteSpace(HttpContext.Session.GetString("EmployeeFullName")))
-            {
-                HttpContext.Session.SetString("EmployeeFullName", "Employee Name");
-            }
-
-            if (string.IsNullOrWhiteSpace(HttpContext.Session.GetString("EmployeeContactNumber")))
-            {
-                HttpContext.Session.SetString("EmployeeContactNumber", "--");
-            }
-
-            if (string.IsNullOrWhiteSpace(HttpContext.Session.GetString("EmployeeEmergencyContact")))
-            {
-                HttpContext.Session.SetString("EmployeeEmergencyContact", "--");
-            }
-
-            if (string.IsNullOrWhiteSpace(HttpContext.Session.GetString("EmployeeEmailAddress")))
-            {
-                HttpContext.Session.SetString(
-                    "EmployeeEmailAddress",
-                    HttpContext.Session.GetString("PortalEmail") ?? "employee@nzftc.co.nz");
-            }
-
-            if (string.IsNullOrWhiteSpace(HttpContext.Session.GetString("EmployeeDepartment")))
-            {
-                HttpContext.Session.SetString("EmployeeDepartment", "--");
-            }
-
-            if (string.IsNullOrWhiteSpace(HttpContext.Session.GetString("EmployeePosition")))
-            {
-                HttpContext.Session.SetString("EmployeePosition", "--");
-            }
-
-            if (string.IsNullOrWhiteSpace(HttpContext.Session.GetString("EmployeeJoinDate")))
-            {
-                HttpContext.Session.SetString("EmployeeJoinDate", "--");
-            }
-
-            if (string.IsNullOrWhiteSpace(HttpContext.Session.GetString("EmployeeStatus")))
-            {
-                HttpContext.Session.SetString("EmployeeStatus", "Active");
-            }
+            var employees = _context.Users.ToList();
+            return View(employees);
         }
 
-        // Sends the current profile values to the employee info view.
-        private void ApplyProfileViewData()
+        // Employee dashboard
+        public IActionResult Dashboard()
         {
-            ViewData["EmployeeId"] = HttpContext.Session.GetString("EmployeeId") ?? "--";
-            ViewData["EmployeeFullName"] = HttpContext.Session.GetString("EmployeeFullName") ?? "--";
-            ViewData["EmployeeContactNumber"] = HttpContext.Session.GetString("EmployeeContactNumber") ?? "--";
-            ViewData["EmployeeEmergencyContact"] = HttpContext.Session.GetString("EmployeeEmergencyContact") ?? "--";
-            ViewData["EmployeeEmailAddress"] = HttpContext.Session.GetString("EmployeeEmailAddress") ?? "--";
-            ViewData["EmployeeDepartment"] = HttpContext.Session.GetString("EmployeeDepartment") ?? "--";
-            ViewData["EmployeePosition"] = HttpContext.Session.GetString("EmployeePosition") ?? "--";
-            ViewData["EmployeeJoinDate"] = HttpContext.Session.GetString("EmployeeJoinDate") ?? "--";
-            ViewData["EmployeeStatus"] = HttpContext.Session.GetString("EmployeeStatus") ?? "Active";
+            if (!IsEmployee())
+                return RedirectToAction("Login", "Account");
+
+            SetEmployeeViewData("Dashboard");
+
+            // Gets all holidays in date order for dashboard display.
+            var holidays = _context.Holidays
+                .OrderBy(h => h.HolidayDate)
+                .ToList();
+
+            // Sends the first 3 holidays to the dashboard preview section.
+            ViewData["HolidayPreview"] = holidays
+                .Take(3)
+                .Select(h => new[]
+                {
+            h.HolidayName,
+            h.HolidayDate.ToString("dd/MM/yyyy")
+                })
+                .ToArray();
+
+            // Sends the full holiday list to the View All modal.
+            ViewData["HolidayFullList"] = holidays
+                .Select(h => new[]
+                {
+            h.HolidayName,
+            h.HolidayDate.ToString("dd/MM/yyyy")
+                })
+                .ToArray();
+
+            return View();
         }
 
-        // Sends holiday preview data and full holiday list data to the dashboard view.
-        private void ApplyHolidayViewData()
+        // Employee leave page
+        public IActionResult Leave()
         {
-            string[][] allHolidays = GetHolidayList();
+            if (!IsEmployee())
+                return RedirectToAction("Login", "Account");
 
-            // Sends the first four holidays to the dashboard preview list.
-            ViewData["HolidayPreview"] = allHolidays.Take(4).ToArray();
-
-            // Sends the full holiday list to the holiday pop-out.
-            ViewData["HolidayFullList"] = allHolidays;
+            SetEmployeeViewData("Leave");
+            return View();
         }
 
-        // Creates the temporary holiday list used for the sprint 1 stump.
-        private string[][] GetHolidayList()
+        // Employee payroll page
+        public IActionResult Payroll()
         {
-            return new string[][]
+            if (!IsEmployee())
+                return RedirectToAction("Login", "Account");
+
+            SetEmployeeViewData("Payroll");
+            return View();
+        }
+
+        // Employee information page
+        public IActionResult MyInfo()
+        {
+            if (!IsEmployee())
+                return RedirectToAction("Login", "Account");
+
+            SetEmployeeViewData("My Info");
+
+            int userId = HttpContext.Session.GetInt32("UserId") ?? 0;
+
+            // Gets the employee row linked to the logged-in user.
+            var employee = _context.Employees.FirstOrDefault(e => e.UserId == userId);
+            if (employee == null)
+                return NotFound();
+
+            // Gets the personal record row linked to the employee.
+            var employeeRecord = _context.EmployeeRecords.FirstOrDefault(r => r.EmployeeId == employee.UserId);
+            if (employeeRecord == null)
+                return NotFound();
+
+            // Gets the base user row so the page can show full name and email.
+            var user = _context.Users.FirstOrDefault(u => u.UserId == userId);
+            if (user == null)
+                return NotFound();
+
+            // Populates the exact ViewData keys expected by MyInfo.cshtml.
+            ViewData["EmployeeId"] = employee.EmployeeCode;
+            ViewData["EmployeeFullName"] = user.FullName;
+            ViewData["EmployeeContactNumber"] = employeeRecord.PhoneNumber;
+            ViewData["EmployeeEmergencyContact"] = employeeRecord.EmergencyContact;
+            ViewData["EmployeeEmailAddress"] = user.Email;
+            ViewData["EmployeeDepartment"] = employee.Department;
+            ViewData["EmployeePosition"] = employee.Position;
+            ViewData["EmployeeJoinDate"] = employee.JoinDate.ToString("dd/MM/yyyy");
+            ViewData["EmployeeStatus"] = employee.EmploymentStatus;
+
+            return View(employeeRecord);
+        }
+
+        // Employee self-update
+        [HttpPost]
+        public IActionResult UpdateProfile(string updateField, string contactNumber, string emergencyContact)
+        {
+            if (!IsEmployee())
+                return RedirectToAction("Login", "Account");
+
+            int userId = HttpContext.Session.GetInt32("UserId") ?? 0;
+
+            // Gets the employee row linked to the logged-in user.
+            var employee = _context.Employees.FirstOrDefault(e => e.UserId == userId);
+            if (employee == null)
             {
-                new[] { "New Year’s Day", "1 January 2026" },
-                new[] { "Day after New Year’s Day", "2 January 2026" },
-                new[] { "Waitangi Day", "6 February 2026" },
-                new[] { "Good Friday", "3 April 2026" },
-                new[] { "Easter Monday", "6 April 2026" },
-                new[] { "ANZAC Day", "25 April 2026" },
-                new[] { "King’s Birthday", "1 June 2026" },
-                new[] { "Matariki", "10 July 2026" }
-            };
-        }
-
-        // Cleans an updated profile field before saving it to session.
-        private string CleanProfileValue(string value)
-        {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                return "--";
+                TempData["Error"] = "Employee not found.";
+                return RedirectToAction("MyInfo");
             }
 
-            return value.Trim();
+            // Gets the employee record row that stores editable profile details.
+            var employeeRecord = _context.EmployeeRecords.FirstOrDefault(r => r.EmployeeId == employee.UserId);
+            if (employeeRecord == null)
+            {
+                TempData["Error"] = "Employee record not found.";
+                return RedirectToAction("MyInfo");
+            }
+
+            // Updates only the field that the user actually clicked Save on.
+            if (updateField == "contactNumber")
+            {
+                employeeRecord.PhoneNumber = contactNumber;
+            }
+            else if (updateField == "emergencyContact")
+            {
+                employeeRecord.EmergencyContact = emergencyContact;
+            }
+
+            _context.SaveChanges();
+
+            TempData["Success"] = "Profile updated successfully.";
+            return RedirectToAction("MyInfo");
+        }
+
+        // Holiday list
+        public IActionResult Holidays()
+        {
+            if (!IsEmployee())
+                return RedirectToAction("Login", "Account");
+
+            SetEmployeeViewData("Holidays");
+
+            var holidays = _context.Holidays
+                .OrderBy(h => h.HolidayDate)
+                .ToList();
+
+            return View(holidays);
+        }
+
+        // Employee support page
+        public IActionResult Support()
+        {
+            if (!IsEmployee())
+                return RedirectToAction("Login", "Account");
+
+            SetEmployeeViewData("Support");
+            return View();
         }
     }
 }

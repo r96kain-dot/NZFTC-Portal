@@ -4,111 +4,73 @@ namespace NZFTC_Portal.Controllers
 {
     public class AdminController : Controller
     {
-        // Loads the admin dashboard.
-        public IActionResult Dashboard()
+        // Check if user is admin
+        private bool IsAdmin()
         {
-            // Stops non-admin users from opening admin pages.
-            IActionResult? accessResult = RequireAdminAccess();
-            if (accessResult != null)
-            {
-                return accessResult;
-            }
-
-            // Loads shared header data for the dashboard.
-            ApplySharedHeaderData("Dashboard");
-
-            return View();
+            return HttpContext.Session.GetString("Role") == "Admin"
+                || HttpContext.Session.GetString("Role") == "Administrator";
         }
 
-        // Loads the admin leave page.
-        public IActionResult Leave()
+        // Reusable header setup
+        private void SetAdminViewData(string activeTab)
         {
-            // Stops non-admin users from opening admin pages.
-            IActionResult? accessResult = RequireAdminAccess();
-            if (accessResult != null)
-            {
-                return accessResult;
-            }
+            var fullName = HttpContext.Session.GetString("FullName") ?? "Admin";
+            var userId = HttpContext.Session.GetInt32("UserId") ?? 0;
 
-            // Loads shared header data for the leave page.
-            ApplySharedHeaderData("Leave");
-
-            return View();
-        }
-
-        // Loads the admin payroll page.
-        public IActionResult Payroll()
-        {
-            // Stops non-admin users from opening admin pages.
-            IActionResult? accessResult = RequireAdminAccess();
-            if (accessResult != null)
-            {
-                return accessResult;
-            }
-
-            // Loads shared header data for the payroll page.
-            ApplySharedHeaderData("Payroll");
-
-            return View();
-        }
-
-        // Loads the admin employees page.
-        public IActionResult Employees()
-        {
-            // Stops non-admin users from opening admin pages.
-            IActionResult? accessResult = RequireAdminAccess();
-            if (accessResult != null)
-            {
-                return accessResult;
-            }
-
-            // Loads shared header data for the employees page.
-            ApplySharedHeaderData("Employees");
-
-            return View();
-        }
-
-        // Loads the admin cases page.
-        public IActionResult Cases()
-        {
-            // Stops non-admin users from opening admin pages.
-            IActionResult? accessResult = RequireAdminAccess();
-            if (accessResult != null)
-            {
-                return accessResult;
-            }
-
-            // Loads shared header data for the cases page.
-            ApplySharedHeaderData("Cases");
-
-            return View();
-        }
-
-        // Checks whether the current session belongs to an admin user.
-        private IActionResult? RequireAdminAccess()
-        {
-            string? currentRole = HttpContext.Session.GetString("PortalRole");
-
-            if (string.IsNullOrWhiteSpace(currentRole))
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
-            if (currentRole != "Admin")
-            {
-                return RedirectToAction("Dashboard", "Employee");
-            }
-
-            return null;
-        }
-
-        // Applies shared header values for all admin pages.
-        private void ApplySharedHeaderData(string activeTab)
-        {
-            ViewData["PortalUserName"] = HttpContext.Session.GetString("PortalUserName") ?? "Admin Name - ADM000";
+            ViewData["PortalUserName"] = $"{fullName} - ADM{userId}";
             ViewData["PortalRole"] = "Admin";
             ViewData["ActiveTab"] = activeTab;
             ViewData["PortalNavItems"] = new[] { "Dashboard", "Leave", "Payroll", "Employees", "Cases" };
+        }
+
+        // Admin dashboard
+        public IActionResult Dashboard()
+        {
+            if (!IsAdmin())
+                return RedirectToAction("Login", "Account");
+
+            SetAdminViewData("Dashboard");
+            return View();
+        }
+
+        // Admin leave management page
+        public IActionResult Leave()
+        {
+            if (!IsAdmin())
+                return RedirectToAction("Login", "Account");
+
+            SetAdminViewData("Leave");
+            return View();
+        }
+
+        // Admin payroll management page
+        public IActionResult Payroll()
+        {
+            if (!IsAdmin())
+                return RedirectToAction("Login", "Account");
+
+            SetAdminViewData("Payroll");
+            return View();
+        }
+
+        // Admin employee management page
+        public IActionResult Employees()
+        {
+            if (!IsAdmin())
+                return RedirectToAction("Login", "Account");
+
+            SetAdminViewData("Employees");
+            return View();
+        }
+
+        // Admin case management page
+        public IActionResult Cases()
+        {
+            if (!IsAdmin())
+                return RedirectToAction("Login", "Account");
+
+            SetAdminViewData("Cases");
+            return View();
         }
     }
 }

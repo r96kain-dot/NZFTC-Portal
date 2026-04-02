@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace NZFTC_Portal.Models;
+
+public partial class Admin
+{
+    public int UserId { get; set; }
+
+    public string AdminCode { get; set; } = null!;
+
+    public virtual ICollection<CasesTbl> CasesTbls { get; set; } = new List<CasesTbl>();
+
+    public virtual ICollection<LeaveRequest> LeaveRequests { get; set; } = new List<LeaveRequest>();
+
+    public virtual ICollection<PayrollRecord> PayrollRecords { get; set; } = new List<PayrollRecord>();
+
+    public virtual User User { get; set; } = null!;
+}
